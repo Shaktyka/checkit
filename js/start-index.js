@@ -1,7 +1,7 @@
 const main = document.querySelector('.page__main');
-let settingsComponent = null;
-let gameComponent = null;
-let resultsComponent = null;
+let settingsComponent = null; // компонент настроек
+let gameComponent = null; // компонент игры
+let resultsComponent = null; // компонент результатов
 let settingsForm = null; // форма настроек
 
 // Общий стейт игры

@@ -104,6 +104,5 @@ const settingsString = `<section class="settings">
 
 // Рендерим элемент
 const renderSettingsEl = () => {
-  const el = renderElement(settingsString)
-  return el;
+  return renderElement(settingsString)
 };

@@ -2,7 +2,7 @@ const startBtn = document.querySelector('.btn__start');
 const output = document.querySelector('.screen__output');
 const controlsBlock = document.querySelector('.controls');
 const randomControl = document.querySelector('.content__random-control');
-// const replayBtn = document.querySelector('.btn__replay');
+const numbControl = document.querySelector('.content__numb-control');
 
 // Массив примеров для режима Урок
 const lesson2arr = [
@@ -16,6 +16,19 @@ const lesson2arr = [
   '2 x 8 = 16',
   '2 x 9 = 18',
   '2 x 10 = 20'
+];
+
+const lesson2arr_numb = [
+  '2 x 1 = ',
+  '2 x 2 = ',
+  '2 x 3 = ',
+  '2 x 4 = ',
+  '2 x 5 = ',
+  '2 x 6 = ',
+  '2 x 7 = ',
+  '2 x 8 = ',
+  '2 x 9 = ',
+  '2 x 10 = '
 ];
 
 // Состояние приложения
@@ -40,6 +53,7 @@ const setStart = () => {
   output.innerHTML = '';
   controlsBlock.classList.add('v-hidden');
   randomControl.checked = false;
+  numbControl.checked = false;
 };
 
 // Перемешиваем массив примеров
@@ -57,12 +71,19 @@ startBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
   controlsBlock.classList.remove('v-hidden');
   state.isRandom = randomControl.checked;
+  state.isExam = numbControl.checked;
+
   if (!state.isExam) {
     if (state.isRandom) {
       state.mathset = shuffleArray(lesson2arr.slice());
     }
-    output.innerHTML = state.mathset[state.currExpressIndex];
+  } else {
+    state.mathset = lesson2arr_numb;
+    if (state.isRandom) {
+      state.mathset = shuffleArray(lesson2arr_numb.slice());
+    }
   }
+
   if (state.currExpressIndex === 0) {
     state.started = true;
     startBtn.innerHTML = 'Заново';
@@ -70,6 +91,8 @@ startBtn.addEventListener('click', (evt) => {
     setStart();
     startBtn.innerHTML = 'Играть';
   }
+
+  output.innerHTML = state.mathset[state.currExpressIndex];
 });
 
 // Обработчик на кнопку Заново

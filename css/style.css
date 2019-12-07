@@ -96,3 +96,8 @@ header {
 .v-hidden {
   display: none;
 }
+
+.content__checks {
+  display: flex;
+  flex-direction: column;
+}

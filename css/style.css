@@ -1,0 +1,98 @@
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+}
+
+/** {
+  outline: 1px solid gray;
+}*/
+
+header {
+  display: flex;
+  justify-content: center;
+  padding-top: 26px;
+  padding-bottom: 25px;
+  text-transform: uppercase;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  background-color: lightyellow;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.btn__start {
+  background-color: green;
+  color: white;
+}
+
+.content__start-btn {
+  margin-right: 20px;
+}
+
+.btn__replay {
+  background-color: orange;
+  color: white;
+}
+
+.content__btns {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 200px;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: lightyellow;
+  margin-bottom: 30px;
+}
+
+.screen__output {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 120px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.btn__control {
+  background-color: lightgreen;
+  border-radius: 5px;
+}
+
+.btn__control--prev {
+  margin-right: 20px;
+}
+
+.v-hidden {
+  display: none;
+}

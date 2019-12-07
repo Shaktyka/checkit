@@ -18,6 +18,7 @@ const lesson2arr = [
   '2 x 10 = 20'
 ];
 
+// Массив примеров для умножени яна 2 без ответов
 const lesson2arr_numb = [
   '2 x 1 = ',
   '2 x 2 = ',
@@ -95,14 +96,7 @@ startBtn.addEventListener('click', (evt) => {
   output.innerHTML = state.mathset[state.currExpressIndex];
 });
 
-// Обработчик на кнопку Заново
-// replayBtn.addEventListener('click', (evt) => {
-//   evt.preventDefault();
-//   output.innerHTML = '';
-//   controlsBlock.classList.add('v-hidden');
-//   setStart();
-// });
-
+// Меняет интерфейс на стартовый
 const showEnd = () => {
   output.innerHTML = 'Всё :)';
   state.currExpressIndex = 0;

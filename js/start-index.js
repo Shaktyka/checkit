@@ -1,7 +1,7 @@
 const main = document.querySelector('.page__main');
 let settingsComponent = null; // компонент настроек
 let gameComponent = null; // компонент игры
-let resultsComponent = null; // компонент результатов
+let resultComponent = null; // компонент результатов
 let settingsForm = null; // форма настроек
 
 // Общий стейт игры
@@ -9,10 +9,72 @@ const state = {
   stage: 'settings'
 };
 
+// Объект примера
+const expression = {
+  mult_1: null,
+  mult_2: null,
+  response: null
+};
+
+const numToWords = ['один', 'два', 'три', 'четыре', 'пять',
+  'шесть', 'семь', 'восемь', 'девять', 'десять', 
+  'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать',
+  'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
+
+const numToWordsTens = ['двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто', 'сто'];
+
+// Перемешиваем массив примеров
+const shuffleArray = (array) => {
+  const copiedArray = array;
+  for (let i = copiedArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
+  }
+  return copiedArray;
+};
+
+// Функция по генерации набора примероа
+const generateNumbers = (arr, mixed = false) => {
+  // В стейт записывается тоже из места вызова
+  // А если рандомное расположение чисел, то можно будет случайно генерировать: в mult_1 или mult_2
+  const numArr = [];
+  const amount = 10;
+  arr.forEach((num) => {
+    for (let i = 1; i <= amount; i++) {
+      const expr = Object.assign({}, expression);
+      let num_list = [num, i];
+      if (mixed) {
+        num_list = shuffleArray(num_list.slice());
+      }
+      expr.mult_1 = num_list[0];
+      expr.mult_2 = num_list[1];
+      expr.response = num * i;
+      numArr.push(expr);
+    }
+  });
+  return numArr; 
+};
+
+console.log(generateNumbers([8]));
+
 // Обработчик сабмита формы настроек
 const settingsFormSubmitHandler = (evt) => {
   evt.preventDefault();
   console.log(1);
+};
+
+// Рендерим экран результатов
+const renderResultScreen = () => {
+  main.appendChild(renderResultScreesEl());
+  resultComponent = document.querySelector('.results');
+  // Обработчики эл-тов в компоненте
+};
+
+// Рендерим экран игры
+const renderGameScreen = () => {
+  main.appendChild(renderGameScreenEl());
+  gameComponent = document.querySelector('.game-screen');
+  // Обработчики эл-тов в компоненте
 };
 
 // Рендерим экран настроек
@@ -25,10 +87,11 @@ const renderSettingsScreen = () => {
   }
 };
 
-
 // Запуск игры
 const start = () => {
-  renderSettingsScreen(); // Рендерим экран настроек
+   renderSettingsScreen(); // Рендерим экран настроек
+  // renderGameScreen();
+  // renderResultScreen();
   // Настраиваем стейт
 };
 

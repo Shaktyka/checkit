@@ -42,6 +42,15 @@ const state = {
   started: false
 };
 
+randomControl.addEventListener('change', (evt) => {
+  if (randomControl.checked) {
+    console.log(1);
+  } else {
+    console.log(0);
+  }
+});
+// numbControl.addEventListener('', );
+
 // Инициализирует начальное состояние
 const setStart = () => {
   state.multiplicators = [];

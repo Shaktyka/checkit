@@ -3,7 +3,12 @@ let settingsComponent = null; // компонент настроек
 let gameComponent = null; // компонент игры
 let resultComponent = null; // компонент результатов
 let settingsForm = null; // форма настроек
-let settingsObj = {}; // объект для настроек игры
+const settings = { // объект для настроек игры
+  regime: null,
+  multipliers: null,
+  present: null,
+  infinite: null
+};
 let selectAllBtn = null;
 let multiplicators = null;
 
@@ -56,7 +61,13 @@ const generateNumbers = (arr, mixed = false) => {
 // Обработчик сабмита формы настроек
 const settingsFormSubmitHandler = (evt) => {
   evt.preventDefault();
-  const settings = new FormData(settingsForm);
+  // Собираем настройки и записываем в объект
+  const data = new FormData(settingsForm);
+  const settingsObj = Object.assign({}, settings);
+  settingsObj.regime = data.get('regime');
+  settingsObj.multipliers = data.getAll('multipliers');
+  settingsObj.present = data.get('present');
+  settingsObj.infinite = data.get('infinite');
 };
 
 // Рендерим экран результатов
@@ -91,6 +102,7 @@ const renderSettingsScreen = () => {
   settingsForm = settingsComponent.querySelector('.settings__form');
   if (settingsForm) {
     settingsForm.addEventListener('submit', settingsFormSubmitHandler);
+    // Кнопка Выбрать все и мультипликаторы
     selectAllBtn = settingsComponent.querySelector('.multiplier__all');
     selectAllBtn.addEventListener('click', selectAllBtnClickHandler);
     multiplicators = settingsComponent.querySelectorAll('.multiplier__check');

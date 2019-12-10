@@ -27,43 +27,43 @@ const settingsString = `<section class="settings">
           </h3>
           <p class="multiplier__group">
             <label class="multiplier__lbl" for="mult-1">
-              <input class="multiplier__check" type="checkbox" id="mult-1" name="multiplier[]" value="1">
+              <input class="multiplier__check" type="checkbox" id="mult-1" name="multipliers" value="1">
               x1
             </label>
             <label class="multiplier__lbl" for="mult-2">
-              <input class="multiplier__check" type="checkbox" id="mult-2" name="multiplier[]" value="2" checked>
+              <input class="multiplier__check" type="checkbox" id="mult-2" name="multipliers" value="2" checked>
               x2
             </label>
             <label class="multiplier__lbl" for="mult-3">
-              <input class="multiplier__check" type="checkbox" id="mult-3" name="multiplier[]" value="3">
+              <input class="multiplier__check" type="checkbox" id="mult-3" name="multipliers" value="3">
               x3
             </label>
             <label class="multiplier__lbl" for="mult-4">
-              <input class="multiplier__check" type="checkbox" id="mult-4" name="multiplier[]" value="4">
+              <input class="multiplier__check" type="checkbox" id="mult-4" name="multipliers" value="4">
               x4
             </label>
             <label class="multiplier__lbl" for="mult-5">
-              <input class="multiplier__check" type="checkbox" id="mult-5" name="multiplier[]" value="5">
+              <input class="multiplier__check" type="checkbox" id="mult-5" name="multipliers" value="5">
               x5
             </label>
             <label class="multiplier__lbl" for="mult-6">
-              <input class="multiplier__check" type="checkbox" id="mult-6" name="multiplier[]" value="6">
+              <input class="multiplier__check" type="checkbox" id="mult-6" name="multipliers" value="6">
               x6
             </label>
             <label class="multiplier__lbl" for="mult-7">
-              <input class="multiplier__check" type="checkbox" id="mult-7" name="multiplier[]" value="7">
+              <input class="multiplier__check" type="checkbox" id="mult-7" name="multipliers" value="7">
               x7
             </label>
             <label class="multiplier__lbl" for="mult-8">
-              <input class="multiplier__check" type="checkbox" id="mult-8" name="multiplier[]" value="8">
+              <input class="multiplier__check" type="checkbox" id="mult-8" name="multipliers" value="8">
               x8
             </label>
             <label class="multiplier__lbl" for="mult-9">
-              <input class="multiplier__check" type="checkbox" id="mult-9" name="multiplier[]" value="9">
+              <input class="multiplier__check" type="checkbox" id="mult-9" name="multipliers" value="9">
               x9
             </label>
             <label class="multiplier__lbl" for="mult-10">
-              <input class="multiplier__check" type="checkbox" id="mult-10" name="multiplier[]" value="10">
+              <input class="multiplier__check" type="checkbox" id="mult-10" name="multipliers" value="10">
               x10
             </label>
           </p>

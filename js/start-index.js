@@ -3,6 +3,9 @@ let settingsComponent = null; // компонент настроек
 let gameComponent = null; // компонент игры
 let resultComponent = null; // компонент результатов
 let settingsForm = null; // форма настроек
+let settingsObj = {}; // объект для настроек игры
+let selectAllBtn = null;
+let multiplicators = null;
 
 // Общий стейт игры
 const state = {
@@ -45,15 +48,15 @@ const generateNumbers = (arr, mixed = false) => {
       numArr.push(expr);
     }
   });
-  return numArr; 
+  return numArr;
 };
 
-console.log(generateNumbers([8]));
+// console.log(generateNumbers([8]));
 
 // Обработчик сабмита формы настроек
 const settingsFormSubmitHandler = (evt) => {
   evt.preventDefault();
-  console.log(1);
+  const settings = new FormData(settingsForm);
 };
 
 // Рендерим экран результатов
@@ -70,6 +73,17 @@ const renderGameScreen = () => {
   // Обработчики эл-тов в компоненте
 };
 
+// Обработчик клика по кнопке "Выбрать все (множители)"
+const selectAllBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  // Отмечаем все чекбоксы
+  multiplicators.forEach((it) => {
+    if (!it.checked) {
+      it.checked = true;
+    }
+  });
+};
+
 // Рендерим экран настроек
 const renderSettingsScreen = () => {
   main.appendChild(renderSettingsEl());
@@ -77,6 +91,9 @@ const renderSettingsScreen = () => {
   settingsForm = settingsComponent.querySelector('.settings__form');
   if (settingsForm) {
     settingsForm.addEventListener('submit', settingsFormSubmitHandler);
+    selectAllBtn = settingsComponent.querySelector('.multiplier__all');
+    selectAllBtn.addEventListener('click', selectAllBtnClickHandler);
+    multiplicators = settingsComponent.querySelectorAll('.multiplier__check');
   }
 };
 

@@ -1,10 +1,11 @@
 // Разметка экрана настроек
 const settingsString = `<section class="settings">
+      <h2 class="settings__title">Выбери, как ты хочешь играть:</h2>
       <form class="settings__form" name="settings-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
-        <h2 class="settings__title">Выбери, как ты хочешь играть:</h2>
+        <div class="settings__wrap">
         <!-- Выбор режима -->
-        <div class="settings__regime regime">
-          <p>Режим:</p>
+        <div class="settings__group regime">
+          <h3 class="settings__subtitle">Режим:</h3>
           <p class="regime__wrap">
             <label for="lesson">
               <input class="lesson__radio" type="radio" name="regime" id="lesson" value="lesson" checked>
@@ -17,13 +18,13 @@ const settingsString = `<section class="settings">
           </p>
         </div>
         <!-- Выбор множителя -->
-        <div class="settings__multiplier multiplier">
-          <p class="multiplier__title">
-            <span class="multiplier__text">Выбери множитель:</span>
+        <div class="settings__group multiplier">
+          <h3 class="settings__subtitle multiplier__title">
+            <span class="multiplier__text">Множитель:</span>
             <button class="btn btn__act multiplier__all" type="button">
               Выбрать все
             </button>
-          </p>
+          </h3>
           <p class="multiplier__group">
             <label class="multiplier__lbl" for="mult-1">
               <input class="multiplier__check" type="checkbox" id="mult-1" name="multiplier[]" value="1">
@@ -69,9 +70,10 @@ const settingsString = `<section class="settings">
           <!-- <div class="multiplier__all-wrap">
           </div> -->
         </div>
+        </div>
         <!-- Выбор как показывать -->
-        <div class="settings__present present">
-          <p>Показывать примеры:</p>
+        <div class="settings__group present">
+          <h3 class="settings__subtitle">Показывать примеры:</h3>
           <p>
             <label for="order">
               <input class="present__radio" type="radio" name="present" id="order" value="order" checked>
@@ -84,7 +86,7 @@ const settingsString = `<section class="settings">
           </p>
         </div>
         <!-- Бесконечная игра -->
-        <div class="settings__infinite infinite">
+        <div class="settings__group infinite">
           <label for="infinite">
             <input class="infinite__check" type="checkbox" name="infinite" id="infinite">
             Бесконечная игра

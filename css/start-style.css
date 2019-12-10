@@ -43,6 +43,7 @@ body {
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .page__title {
@@ -63,6 +64,8 @@ body {
 .settings__title {
   display: flex;
   justify-content: center;
+  margin: 0;
+  margin-bottom: 30px;
   font-size: 40px;
   color: #BEE0FF;
 }
@@ -71,7 +74,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 960px;
-  min-height: 640px;
+  /*min-height: 640px;*/
   padding: 40px;
   background-color: #ffffff;
   border-radius: 26px;
@@ -98,13 +101,33 @@ body {
 }
 
 .regime {
+  flex-grow: 1;
   margin-right: 20px;
+}
+
+.regime__wrap {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.regime__wrap label:first-child {
+  margin-bottom: 10px;
+}
+
+.multiplier {
+  width: 66%;
+  flex-grow: 1;
 }
 
 .multiplier__title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.multiplier__group label {
+  margin-bottom: 10px;
 }
 
 .multiplier__text {
@@ -124,9 +147,9 @@ body {
 }
 
 .multiplier__group {
-  width: 590px;
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
 }
 
 .multiplier__lbl {
@@ -134,20 +157,23 @@ body {
 }
 
 .present {
-  display: flex;
-  justify-content: space-between;
+  width: 49%;
+  /*display: flex;
+  justify-content: space-between;*/
 }
 
 .infinite {
-  display: flex;
-  justify-content: center;
+  width: 49%;
+  /*display: flex;
+  justify-content: center;*/
 }
 
 .settings__submit-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
+  margin-top: 30px;
+  /*margin-top: auto;*/
   /*align-self: flex-end;*/
 }
 

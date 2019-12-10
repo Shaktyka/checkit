@@ -20,7 +20,7 @@ const settingsString = `<section class="settings">
         <!-- Выбор множителя -->
         <div class="settings__group multiplier">
           <h3 class="settings__subtitle multiplier__title">
-            <span class="multiplier__text">Множитель:</span>
+            <span class="multiplier__text">Множители:</span>
             <button class="btn btn__act multiplier__all" type="button">
               Выбрать все
             </button>
@@ -71,10 +71,11 @@ const settingsString = `<section class="settings">
           </div> -->
         </div>
         </div>
+        <div class="settings__wrap">
         <!-- Выбор как показывать -->
         <div class="settings__group present">
           <h3 class="settings__subtitle">Показывать примеры:</h3>
-          <p>
+          <div class="present__group">
             <label for="order">
               <input class="present__radio" type="radio" name="present" id="order" value="order" checked>
               по-порядку
@@ -83,14 +84,16 @@ const settingsString = `<section class="settings">
               <input class="present__radio" type="radio" name="present" id="random" value="random">
               случайно
             </label>
-          </p>
+          </div>
         </div>
         <!-- Бесконечная игра -->
         <div class="settings__group infinite">
+          <h3 class="settings__subtitle">Для самых смелых:</h3>
           <label for="infinite">
             <input class="infinite__check" type="checkbox" name="infinite" id="infinite">
             Бесконечная игра
           </label>
+        </div>
         </div>
         <!-- Кнопка Начать -->
         <div class="settings__submit-wrap">

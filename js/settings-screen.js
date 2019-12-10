@@ -90,7 +90,7 @@ const settingsString = `<section class="settings">
         <div class="settings__group infinite">
           <h3 class="settings__subtitle">Для самых смелых:</h3>
           <label for="infinite">
-            <input class="infinite__check" type="checkbox" name="infinite" id="infinite">
+            <input class="infinite__check" type="checkbox" name="infinite" id="infinite" value="off">
             Бесконечная игра
           </label>
         </div>

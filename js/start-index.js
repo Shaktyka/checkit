@@ -14,7 +14,8 @@ let multiplicators = null;
 
 // Общий стейт игры
 const state = {
-  stage: 'settings'
+  stage: null,
+  settings: null
 };
 
 // Объект примера
@@ -22,6 +23,29 @@ const expression = {
   mult_1: null,
   mult_2: null,
   response: null
+};
+
+// Запись в стейт
+const setState = (key, val) => {
+  state[key] = val;
+};
+
+// Читаем из стейта
+const getStateKey = (key) => {
+  return state[key] ? state[key] : null;
+};
+
+// Старт игры
+const startGame = () => {
+  // Меняем состояние игры
+  setState('stage', 'game');
+  // Получаем настройки
+  const currSet = getStateKey('settings');
+  console.log(currSet);
+  // Генерируем набор примеров в соотв-вии с настройками
+  // Генерируем и меняем экран
+  // Вешаем обработчики на элементы экрана игры
+  // + обработчики на стрелку вправо клавиатуры
 };
 
 // Перемешиваем массив примеров
@@ -56,7 +80,11 @@ const generateNumbers = (arr, mixed = false) => {
   return numArr;
 };
 
-// console.log(generateNumbers([8]));
+// Сброс обраб-в с экрана настроек
+const removeSettingsListeners = () => {
+  settingsForm.removeEventListener('submit', settingsFormSubmitHandler);
+  selectAllBtn.removeEventListener('click', selectAllBtnClickHandler);
+};
 
 // Обработчик сабмита формы настроек
 const settingsFormSubmitHandler = (evt) => {
@@ -68,6 +96,11 @@ const settingsFormSubmitHandler = (evt) => {
   settingsObj.multipliers = data.getAll('multipliers');
   settingsObj.present = data.get('present');
   settingsObj.infinite = data.get('infinite');
+  state.settings = settingsObj;
+  // Сброс обработчиков с экрана настроек
+  removeSettingsListeners();
+  // Запускаем игру
+  startGame();
 };
 
 // Рендерим экран результатов
@@ -97,7 +130,10 @@ const selectAllBtnClickHandler = (evt) => {
 
 // Рендерим экран настроек
 const renderSettingsScreen = () => {
+  // Добавляем компонент
   main.appendChild(renderSettingsEl());
+  state.stage = 'settings';
+  //Ввешаем обработчики на элементы
   settingsComponent = document.querySelector('.settings');
   settingsForm = settingsComponent.querySelector('.settings__form');
   if (settingsForm) {

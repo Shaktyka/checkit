@@ -22,7 +22,9 @@ let mult_result = null;
 // ОБЩИЙ СТЕЙТ игры
 const state = {
   stage: null,
-  settings: null
+  settings: null,
+  expressions: null,
+  errorGameMessage: ''
 };
 
 // Объект примера
@@ -65,8 +67,8 @@ const generateNumbers = (arr, mixed = false) => {
       if (mixed) {
         num_list = shuffleArray(num_list.slice());
       }
-      expr.mult_1 = num_list[0];
-      expr.mult_2 = num_list[1];
+      expr.mult_1 = Number(num_list[0]);
+      expr.mult_2 = Number(num_list[1]);
       expr.response = num * i;
       numArr.push(expr);
     }
@@ -89,9 +91,11 @@ const removeGameScreenListeners = () => {
 // Обработчик клика по кнопке "Выйти"
 const exitBtnClickHandler = (evt) => {
   evt.preventDefault();
-  console.log('exit');
   renderSettingsScreen();
+  setState('stage', 'settings');
   setState('settings', null);
+  setState('expressions', null);
+  setState('errorGameMessage', '');
   removeGameScreenListeners();
 };
 
@@ -129,7 +133,22 @@ const startGame = () => {
   const currSet = getStateKey('settings');
   console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
-  
+  if (currSet.infinite === 'on') {
+    setState('errorGameMessage', 'Этот режим игры ещё не реализован');
+  } else if (currSet.regime === 'lesson') {
+    // Готовим примеры для отобр-ния
+    const rand = currSet.present === 'random';
+    let expressions = generateNumbers(currSet.multipliers);
+    if (rand) {
+      expressions = shuffleArray(expressions.slice())
+    }
+    setState('expressions', expressions);
+    console.log(expressions);
+  } else if (currSet.regime === 'exam') {
+    setState('errorGameMessage', 'Этот режим игры ещё не реализован');
+  } else {
+    setState('errorGameMessage', 'Что-то пошло не так');
+  }
   // Генерируем и меняем экран
   renderGameScreen();
 };

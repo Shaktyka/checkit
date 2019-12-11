@@ -19,7 +19,7 @@ let multiplicator_2 = null;
 let mult_result = null;
 //////////////////////////
 
-// Общий стейт игры
+// ОБЩИЙ СТЕЙТ игры
 const state = {
   stage: null,
   settings: null
@@ -80,10 +80,19 @@ const removeSettingsListeners = () => {
   selectAllBtn.removeEventListener('click', selectAllBtnClickHandler);
 };
 
+// Сброс обраб-в с элементов экрана игры
+const removeGameScreenListeners = () => {
+  exitBtn.removeEventListener('click', exitBtnClickHandler);
+  nextBtn.removeEventListener('click', nextBtnClickHandler);
+};
+
 // Обработчик клика по кнопке "Выйти"
 const exitBtnClickHandler = (evt) => {
   evt.preventDefault();
   console.log('exit');
+  renderSettingsScreen();
+  setState('settings', null);
+  removeGameScreenListeners();
 };
 
 // Обработчик клика по кнопке "Следующий"
@@ -93,7 +102,6 @@ const nextBtnClickHandler = (evt) => {
 };
 
 // Вешаем обработчики на элементы экрана игры
-// + обработчики на стрелку вправо клавиатуры
 const initGameScreen = () => {
   gameComponent = document.querySelector('.game-screen');
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
@@ -119,8 +127,9 @@ const startGame = () => {
   setState('stage', 'game');
   // Получаем настройки
   const currSet = getStateKey('settings');
-  // console.log(currSet);
+  console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
+  
   // Генерируем и меняем экран
   renderGameScreen();
 };

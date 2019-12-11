@@ -35,19 +35,6 @@ const getStateKey = (key) => {
   return state[key] ? state[key] : null;
 };
 
-// Старт игры
-const startGame = () => {
-  // Меняем состояние игры
-  setState('stage', 'game');
-  // Получаем настройки
-  const currSet = getStateKey('settings');
-  // console.log(currSet);
-  // Генерируем набор примеров в соотв-вии с настройками
-  // Генерируем и меняем экран
-  // Вешаем обработчики на элементы экрана игры
-  // + обработчики на стрелку вправо клавиатуры
-};
-
 // Перемешиваем массив примеров
 const shuffleArray = (array) => {
   const copiedArray = array;
@@ -86,6 +73,24 @@ const removeSettingsListeners = () => {
   selectAllBtn.removeEventListener('click', selectAllBtnClickHandler);
 };
 
+// Вешаем обработчики на элементы экрана игры
+// + обработчики на стрелку вправо клавиатуры
+const gameScreenInit = () => {
+  
+};
+
+// Старт игры
+const startGame = () => {
+  // Меняем состояние игры
+  setState('stage', 'game');
+  // Получаем настройки
+  const currSet = getStateKey('settings');
+  console.log(currSet);
+  // Генерируем набор примеров в соотв-вии с настройками
+  // Генерируем и меняем экран
+  renderGameScreen();
+};
+
 // Обработчик сабмита формы настроек
 const settingsFormSubmitHandler = (evt) => {
   evt.preventDefault();
@@ -108,10 +113,12 @@ const renderResultScreen = () => {
   main.appendChild(renderResultScreesEl());
   resultComponent = document.querySelector('.results');
   // Обработчики эл-тов в компоненте
+  // gameScreenInit();
 };
 
 // Рендерим экран игры
 const renderGameScreen = () => {
+  main.innerHTML = '';
   main.appendChild(renderGameScreenEl());
   gameComponent = document.querySelector('.game-screen');
   // Обработчики эл-тов в компоненте
@@ -128,9 +135,14 @@ const selectAllBtnClickHandler = (evt) => {
   });
 };
 
+const initSettingsScreen = () => {
+
+};
+
 // Рендерим экран настроек
 const renderSettingsScreen = () => {
   // Добавляем компонент
+  main.innerHTML = '';
   main.appendChild(renderSettingsEl());
   state.stage = 'settings';
   //Ввешаем обработчики на элементы
@@ -147,11 +159,8 @@ const renderSettingsScreen = () => {
 
 // Запуск игры
 const start = () => {
-  // toastr.info('Тест');
-  // renderSettingsScreen(); // Рендерим экран настроек
-  renderGameScreen();
+  renderSettingsScreen(); // Рендерим экран настроек
   // renderResultScreen();
-  // Настраиваем стейт
 };
 
 start();

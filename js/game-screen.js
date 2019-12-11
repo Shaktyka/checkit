@@ -1,9 +1,29 @@
 // Разметка экрана настроек
-const gameString = `<section class="game-screen">
-      <div class="game-screen__wrap">
-        <h2 class="settings__title">Посмотри и запомни:</h2>
+const gameString = `<section class="screen game-screen">
+    <h2 class="screen__title game-screen__title">Посмотри и запомни:</h2>
+    <div class="game">
+      <div class="game__block">
+        <form class="game__form" name="game-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
+          <div class="game__expr">
+            <span class="mult-1">5</span>
+            <span class="symbol-mult">x</span>
+            <span class="mult-2">6</span>
+            <span class="symbol-result">=</span>
+            <span class="mult-result">30</span>
+          </div>
+          <p class="game__expr-text v-hidden">Пять на пять — двадцать пять</p>
+        </form>
       </div>
-    </section>`;
+      <div class="game-screen__btns">
+        <button class="btn btn__act game__btn game-screen__exit-btn" type="button">
+          Выйти
+        </button>
+        <button class="btn btn__act game__btn game-screen__next-btn" type="button">
+          Следующий
+        </button>
+      </div>
+    <div>
+  </section>`;
 
 // Рендерим элемент
 const renderGameScreenEl = () => {

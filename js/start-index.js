@@ -41,7 +41,7 @@ const startGame = () => {
   setState('stage', 'game');
   // Получаем настройки
   const currSet = getStateKey('settings');
-  console.log(currSet);
+  // console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
   // Генерируем и меняем экран
   // Вешаем обработчики на элементы экрана игры
@@ -147,8 +147,9 @@ const renderSettingsScreen = () => {
 
 // Запуск игры
 const start = () => {
-   renderSettingsScreen(); // Рендерим экран настроек
-  // renderGameScreen();
+  // toastr.info('Тест');
+  // renderSettingsScreen(); // Рендерим экран настроек
+  renderGameScreen();
   // renderResultScreen();
   // Настраиваем стейт
 };

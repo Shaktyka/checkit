@@ -1,6 +1,6 @@
 // Разметка экрана настроек
-const settingsString = `<section class="settings">
-      <h2 class="settings__title">Выбери, как ты хочешь играть:</h2>
+const settingsString = `<section class="screen settings">
+      <h2 class="screen__title settings__title">Выбери, как ты хочешь играть:</h2>
       <form class="settings__form" name="settings-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
         <div class="settings__wrap">
         <!-- Выбор режима -->
@@ -97,10 +97,10 @@ const settingsString = `<section class="settings">
         </div>
         <!-- Кнопка Начать -->
         <div class="settings__submit-wrap">
-          <!-- <button class="btn btn__act settings__reset-btn" type="reset">
+          <!-- <button class="btn btn__act game__btn settings__reset-btn" type="reset">
             Сбросить
           </button> -->
-          <button class="btn btn__act settings__submit-btn" type="submit">
+          <button class="btn btn__act game__btn settings__submit-btn" type="submit">
             Играть
           </button>
         </div>

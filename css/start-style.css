@@ -21,6 +21,22 @@ body {
   box-sizing: border-box;
 }
 
+.v-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 .btn {
   background-color: gray;
   border: none;
@@ -29,7 +45,6 @@ body {
 
 .btn__act {
   padding: 10px 20px;
-  text-transform: uppercase;
   color: white;
   cursor: pointer;
 }
@@ -54,20 +69,75 @@ body {
   color: white;
 }
 
-.settings {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: center;
+.screen {
+  /* */
 }
 
-.settings__title {
+.screen__title {
   display: flex;
   justify-content: center;
   margin: 0;
   margin-bottom: 30px;
   font-size: 40px;
   color: #BEE0FF;
+}
+
+/* Экран игры */
+
+.game-screen {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game__block {
+  width: 870px;
+  height: 400px;
+  background-color: #ffffff;
+  border-radius: 26px;
+  color: #002A54;
+  margin-bottom: 30px;
+  padding: 70px 30px;
+}
+
+.game__form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game__expr {
+  font-size: 130px;
+}
+
+.game__expr-text {
+  margin: 0;
+  margin-top: auto;
+  font-size: 30px;
+}
+
+.game-screen__btns {
+  display: flex;
+  justify-content: center;
+}
+
+.game-screen__exit-btn {
+  margin-right: 30px;
+}
+
+.game-screen__next-btn {
+  background-color: #2699FB;
+}
+
+/* Экран настроек */
+
+.settings {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 
 .settings__form {
@@ -177,14 +247,17 @@ body {
   /*align-self: flex-end;*/
 }
 
-.settings__submit-btn {
+.game__btn {
   width: 295px;
   height: 48px;
-  background-color: #13CF58;
   padding: 11px 50px 13px;
   border-radius: 24px;
   font-size: 18px;
   text-transform: none;
+}
+
+.settings__submit-btn {
+  background-color: #13CF58;
 }
 
 .settings__reset-btn {

@@ -1,6 +1,6 @@
 // Разметка экрана настроек
 const gameString = `<section class="screen game-screen">
-    <h2 class="screen__title game-screen__title">Посмотри и запомни:</h2>
+    <h2 class="screen__title game-screen__title">Посмотри Эльзе запомнить пример:</h2>
     <div class="game">
       <div class="game__block">
         <form class="game__form" name="game-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">

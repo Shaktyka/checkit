@@ -11,6 +11,13 @@ const settings = { // объект для настроек игры
 };
 let selectAllBtn = null;
 let multiplicators = null;
+// Экран игры
+let exitBtn = null;
+let nextBtn = null;
+let multiplicator_1 = null;
+let multiplicator_2 = null;
+let mult_result = null;
+//////////////////////////
 
 // Общий стейт игры
 const state = {
@@ -73,10 +80,37 @@ const removeSettingsListeners = () => {
   selectAllBtn.removeEventListener('click', selectAllBtnClickHandler);
 };
 
+// Обработчик клика по кнопке "Выйти"
+const exitBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  console.log('exit');
+};
+
+// Обработчик клика по кнопке "Следующий"
+const nextBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  console.log('next');
+};
+
 // Вешаем обработчики на элементы экрана игры
 // + обработчики на стрелку вправо клавиатуры
-const gameScreenInit = () => {
-  
+const initGameScreen = () => {
+  gameComponent = document.querySelector('.game-screen');
+  exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
+  nextBtn = gameComponent.querySelector('.game-screen__next-btn');
+  multiplicator_1 = gameComponent.querySelector('.mult-1');
+  multiplicator_2 = gameComponent.querySelector('.mult-2');
+  mult_result = gameComponent.querySelector('.mult-result');
+  // Обработчики
+  exitBtn.addEventListener('click', exitBtnClickHandler);
+  nextBtn.addEventListener('click', nextBtnClickHandler);
+};
+
+// Рендерим экран игры
+const renderGameScreen = () => {
+  main.innerHTML = '';
+  main.appendChild(renderGameScreenEl());
+  initGameScreen();
 };
 
 // Старт игры
@@ -85,7 +119,7 @@ const startGame = () => {
   setState('stage', 'game');
   // Получаем настройки
   const currSet = getStateKey('settings');
-  console.log(currSet);
+  // console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
   // Генерируем и меняем экран
   renderGameScreen();
@@ -116,14 +150,6 @@ const renderResultScreen = () => {
   // gameScreenInit();
 };
 
-// Рендерим экран игры
-const renderGameScreen = () => {
-  main.innerHTML = '';
-  main.appendChild(renderGameScreenEl());
-  gameComponent = document.querySelector('.game-screen');
-  // Обработчики эл-тов в компоненте
-};
-
 // Обработчик клика по кнопке "Выбрать все (множители)"
 const selectAllBtnClickHandler = (evt) => {
   evt.preventDefault();
@@ -135,17 +161,8 @@ const selectAllBtnClickHandler = (evt) => {
   });
 };
 
+// Вешаем обработчики на элементы экрана настроек
 const initSettingsScreen = () => {
-
-};
-
-// Рендерим экран настроек
-const renderSettingsScreen = () => {
-  // Добавляем компонент
-  main.innerHTML = '';
-  main.appendChild(renderSettingsEl());
-  state.stage = 'settings';
-  //Ввешаем обработчики на элементы
   settingsComponent = document.querySelector('.settings');
   settingsForm = settingsComponent.querySelector('.settings__form');
   if (settingsForm) {
@@ -155,6 +172,14 @@ const renderSettingsScreen = () => {
     selectAllBtn.addEventListener('click', selectAllBtnClickHandler);
     multiplicators = settingsComponent.querySelectorAll('.multiplier__check');
   }
+};
+
+// Рендерим экран настроек
+const renderSettingsScreen = () => {
+  main.innerHTML = '';
+  main.appendChild(renderSettingsEl());
+  setState('stage', 'settings');
+  initSettingsScreen();
 };
 
 // Запуск игры

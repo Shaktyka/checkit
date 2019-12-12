@@ -2,6 +2,7 @@ const main = document.querySelector('.page__main');
 let settingsComponent = null; // компонент настроек
 let gameComponent = null; // компонент игры
 let resultComponent = null; // компонент результатов
+let notDevComponent =  null;
 let settingsForm = null; // форма настроек
 const settings = { // объект для настроек игры
   regime: null,
@@ -141,11 +142,38 @@ const initGameScreen = () => {
 // Рендерим экран игры
 const renderGameScreen = () => {
   main.innerHTML = '';
-  const gameElement = renderElement(makeGameScreen(state.errorGameMessage));
+  const gameElement = renderElement(makeGameScreen());
   const expressElement = renderElement(makeExpressionEl(state.expressions[0]));
   render(gameElement.querySelector('.game__expr'), expressElement);
   render(main, gameElement);
   initGameScreen();
+};
+
+// Обработчик выхода
+const exitNotDevBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  renderSettingsScreen();
+  setState('stage', 'settings');
+  setState('settings', null);
+  setState('expressions', null);
+  setState('errorGameMessage', '');
+  setState('currExprIndex', 0);
+  exitNotDevBtn.removeEventListener('click', exitNotDevBtnClickHandler);
+};
+
+// Обработчики на экран игры "Режим не реализован"
+const initNotDevScreen = () => {
+  notDevComponent = document.querySelector('.not-dev-screen');
+  exitNotDevBtn = notDevComponent.querySelector('.not-dev__exit-btn');
+  exitNotDevBtn.addEventListener('click', exitNotDevBtnClickHandler);
+};
+
+// Рендерим экран "Режим не разработан"
+const renderNotDevScreen = () => {
+  main.innerHTML = '';
+  const notDevElement = renderElement(makeNotDevScreen(state.errorGameMessage));
+  render(main, notDevElement);
+  initNotDevScreen();
 };
 
 // Старт игры
@@ -157,7 +185,8 @@ const startGame = () => {
   // console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
   if (currSet.infinite === 'on') {
-    setState('errorGameMessage', 'Этот режим игры ещё не реализован');
+   setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
+   renderNotDevScreen();
   } else if (currSet.regime === 'lesson') {
     // Готовим примеры для отобр-ния
     const rand = currSet.present === 'random';
@@ -166,14 +195,16 @@ const startGame = () => {
       expressions = shuffleArray(expressions.slice())
     }
     setState('expressions', expressions);
-    console.log(expressions);
+    // Генерируем и меняем экран
+    renderGameScreen();
+    // console.log(expressions);
   } else if (currSet.regime === 'exam') {
-    setState('errorGameMessage', 'Этот режим игры ещё не реализован');
+    setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
+    renderNotDevScreen();
   } else {
     setState('errorGameMessage', 'Что-то пошло не так');
+    renderNotDevScreen();
   }
-  // Генерируем и меняем экран
-  renderGameScreen();
 };
 
 // Обработчик сабмита формы настроек

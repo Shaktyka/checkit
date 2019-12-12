@@ -99,6 +99,7 @@ const exitBtnClickHandler = (evt) => {
   setState('settings', null);
   setState('expressions', null);
   setState('errorGameMessage', '');
+  setState('currExprIndex', 0);
   removeGameScreenListeners();
 };
 

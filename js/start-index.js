@@ -18,6 +18,7 @@ let gameForm = null;
 let multiplicator_1 = null;
 let multiplicator_2 = null;
 let mult_result = null;
+let expressionBlock = null;
 //////////////////////////
 
 // ОБЩИЙ СТЕЙТ игры
@@ -103,16 +104,22 @@ const exitBtnClickHandler = (evt) => {
 
 // Рендеринг примера
 const renderNextExpression = () => {
-  console.log(1);
+  // Отрендерить следующий пример
+  const nextEl = state.expressions[state.currExprIndex];
+  const expressEl = renderElement(makeExpressionEl(nextEl));
+  const currExprEl = document.querySelector('.game__expr');
+  const currExprElBlock = currExprEl.querySelector('.game__expr-wrap');
+  currExprEl.replaceChild(expressEl, currExprElBlock);
 };
 
 // Обработчик клика по кнопке "Следующий"
 const nextBtnClickHandler = (evt) => {
   evt.preventDefault();
-  if (state.currExprIndex !== state.expressions.length - 1) {
+  if (state.currExprIndex < state.expressions.length - 1) {
+    state.currExprIndex += 1;
     renderNextExpression();
-  } else {
-    console.log(0);
+  } else if (state.currExprIndex === state.expressions.length - 1) {
+    renderNextExpression();
   }
 };
 
@@ -133,8 +140,10 @@ const initGameScreen = () => {
 // Рендерим экран игры
 const renderGameScreen = () => {
   main.innerHTML = '';
-  const gameEl = renderElement(makeGameScreen(state.expressions[0]), state.errorGameMessage);
-  render(main, gameEl);
+  const gameElement = renderElement(makeGameScreen(state.errorGameMessage));
+  const expressElement = renderElement(makeExpressionEl(state.expressions[0]));
+  render(gameElement.querySelector('.game__expr'), expressElement);
+  render(main, gameElement);
   initGameScreen();
 };
 

@@ -14,6 +14,7 @@ let multiplicators = null;
 // Экран игры
 let exitBtn = null;
 let nextBtn = null;
+let gameForm = null;
 let multiplicator_1 = null;
 let multiplicator_2 = null;
 let mult_result = null;
@@ -110,6 +111,7 @@ const initGameScreen = () => {
   gameComponent = document.querySelector('.game-screen');
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
+  gameForm = gameComponent.querySelector('.game__form');
   multiplicator_1 = gameComponent.querySelector('.mult-1');
   multiplicator_2 = gameComponent.querySelector('.mult-2');
   mult_result = gameComponent.querySelector('.mult-result');
@@ -121,7 +123,8 @@ const initGameScreen = () => {
 // Рендерим экран игры
 const renderGameScreen = () => {
   main.innerHTML = '';
-  main.appendChild(renderGameScreenEl());
+  const gameScreen = renderGameScreenEl(state.expressions[0]);
+  main.appendChild(gameScreen);
   initGameScreen();
 };
 
@@ -131,7 +134,7 @@ const startGame = () => {
   setState('stage', 'game');
   // Получаем настройки
   const currSet = getStateKey('settings');
-  console.log(currSet);
+  // console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
   if (currSet.infinite === 'on') {
     setState('errorGameMessage', 'Этот режим игры ещё не реализован');

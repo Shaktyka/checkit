@@ -109,5 +109,5 @@ const settingsString = `<section class="screen settings">
 
 // Рендерим элемент
 const renderSettingsEl = () => {
-  return renderElement(settingsString)
+  return renderElement(settingsString);
 };

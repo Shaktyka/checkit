@@ -93,7 +93,7 @@ body {
 
 .game__block {
   width: 870px;
-  /*height: 400px;*/
+  min-height: 300px;
   background-color: #ffffff;
   border-radius: 26px;
   color: #002A54;

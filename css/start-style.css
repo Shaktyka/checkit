@@ -184,7 +184,13 @@ body {
 
 .game-screen__exit-btn {
   margin-right: 30px;
-  background-color: #80066f;
+  background-color: transparent;
+  /*border: 2px solid #2699FB;
+  color: #2699FB;*/
+  border: 2px solid #BEE0FF;
+  color: #BEE0FF;
+  opacity: 0.7;
+  /*background-color: #80066f;*/
 }
 
 .game-screen__next-btn {

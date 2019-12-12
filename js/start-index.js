@@ -25,7 +25,8 @@ const state = {
   stage: null,
   settings: null,
   expressions: null,
-  errorGameMessage: ''
+  errorGameMessage: '',
+  currExprIndex: 0
 };
 
 // Объект примера
@@ -100,10 +101,19 @@ const exitBtnClickHandler = (evt) => {
   removeGameScreenListeners();
 };
 
+// Рендеринг примера
+const renderNextExpression = () => {
+  console.log(1);
+};
+
 // Обработчик клика по кнопке "Следующий"
 const nextBtnClickHandler = (evt) => {
   evt.preventDefault();
-  console.log('next');
+  if (state.currExprIndex !== state.expressions.length - 1) {
+    renderNextExpression();
+  } else {
+    console.log(0);
+  }
 };
 
 // Вешаем обработчики на элементы экрана игры
@@ -123,8 +133,8 @@ const initGameScreen = () => {
 // Рендерим экран игры
 const renderGameScreen = () => {
   main.innerHTML = '';
-  const gameScreen = renderGameScreenEl(state.expressions[0]);
-  main.appendChild(gameScreen);
+  const gameEl = renderElement(makeGameScreen(state.expressions[0]), state.errorGameMessage);
+  render(main, gameEl);
   initGameScreen();
 };
 
@@ -205,10 +215,16 @@ const initSettingsScreen = () => {
   }
 };
 
+// Рендеринг элементов в контейнер
+const render = (container, element) => {
+  container.appendChild(element);
+};
+
 // Рендерим экран настроек
 const renderSettingsScreen = () => {
   main.innerHTML = '';
-  main.appendChild(renderSettingsEl());
+  const settingsEl = renderElement(makeSettingsScreen());
+  render(main, settingsEl);
   setState('stage', 'settings');
   initSettingsScreen();
 };

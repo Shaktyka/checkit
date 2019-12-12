@@ -1,5 +1,6 @@
-// Разметка экрана настроек
-const settingsString = `<section class="screen settings">
+// Рендеринг экрана настроек
+const makeSettingsScreen = () => {
+  return `<section class="screen settings">
       <h2 class="screen__title settings__title">Выбери, как ты хочешь играть:</h2>
       <form class="settings__form" name="settings-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
         <div class="settings__wrap">
@@ -105,9 +106,5 @@ const settingsString = `<section class="screen settings">
           </button>
         </div>
       </form>
-    </section>`;
-
-// Рендерим элемент
-const renderSettingsEl = () => {
-  return renderElement(settingsString);
+    </section>`.trim();
 };

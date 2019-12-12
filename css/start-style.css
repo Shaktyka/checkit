@@ -6,6 +6,10 @@ html {
 body {
   height: 100vh;
   background-color: #2870BB;
+  background-image: url('../img/back.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
@@ -62,11 +66,17 @@ body {
 }
 
 .page__title {
+  width: 428px;
+  height: 65px;
   margin: 0;
   padding: 0;
   font-size: 60px;
   font-weight: 400;
   color: white;
+  background-image: url('../img/logo.png');
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: contain;
 }
 
 .screen {
@@ -98,7 +108,7 @@ body {
   border-radius: 26px;
   color: #002A54;
   margin-bottom: 30px;
-  padding: 70px 30px;
+  padding: 70px 30px 80px;
 }
 
 .game__form {

@@ -4,7 +4,7 @@ const makeGameScreen = (errorMessage = false) => {
     <h2 class="screen__title game-screen__title">Помоги Эльзе запомнить пример:</h2>
     <div class="game">
       <div class="game__progress">
-        1 / 10
+        Прогресс: <span style="margin-left: 15px;">1 / 100</span>
       </div>
       <div class="game__block">
         <form class="game__form" name="game-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">

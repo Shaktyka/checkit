@@ -87,7 +87,7 @@ body {
   display: flex;
   justify-content: center;
   margin: 0;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   font-size: 40px;
   color: #BEE0FF;
 }
@@ -143,6 +143,10 @@ body {
 
 /* Экран игры */
 
+.game {
+  position: relative;
+}
+
 .game-screen {
   display: flex;
   justify-content: flex-start;
@@ -161,9 +165,22 @@ body {
 }
 
 .game__progress {
-  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
+
+  color: #002a54;
+  width: 28%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -10px;
   padding: 10px 20px;
-  border-radius: 10px;
+  background-color: #fff;
+  
+  border-radius: 25px;
+  border: 1px solid #002a54;
+  z-index: 2;
 }
 
 .game__form {

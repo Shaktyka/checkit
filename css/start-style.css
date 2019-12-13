@@ -346,6 +346,11 @@ body {
   justify-content: space-between;*/
 }
 
+.adult {
+  display: none;
+  width: 29%;
+}
+
 .infinite {
   width: 49%;
   /*display: flex;

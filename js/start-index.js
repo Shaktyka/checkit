@@ -109,7 +109,7 @@ const exitBtnClickHandler = (evt) => {
 const renderNextExpression = () => {
   // Отрендерить следующий пример
   const nextEl = state.expressions[state.currExprIndex];
-  const expressEl = renderElement(makeExpressionEl(nextEl));
+  const expressEl = renderElement(makeExpressionEl(nextEl, state.settings.regime));
   const currExprEl = document.querySelector('.game__expr');
   const currExprElBlock = currExprEl.querySelector('.game__expr-wrap');
   currExprEl.replaceChild(expressEl, currExprElBlock);

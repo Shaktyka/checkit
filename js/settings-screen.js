@@ -89,10 +89,18 @@ const makeSettingsScreen = () => {
         </div>
         <!-- Бесконечная игра -->
         <div class="settings__group infinite">
-          <h3 class="settings__subtitle">Для самых смелых:</h3>
+          <h3 class="settings__subtitle">Для выносливых:</h3>
           <label for="infinite">
             <input class="infinite__check" type="checkbox" name="infinite" id="infinite">
             Бесконечная игра
+          </label>
+        </div>
+        <!-- Для взрослых -->
+        <div class="settings__group adult">
+          <h3 class="settings__subtitle">Для умных:</h3>
+          <label for="adult">
+            <input class="adult__check" type="checkbox" name="adult" id="adult">
+            Очень сложно
           </label>
         </div>
         </div>

@@ -156,7 +156,7 @@ const renderGameScreen = () => {
   main.innerHTML = '';
   const gameElement = renderElement(makeGameScreen());
   // Элемент выражения
-  const expressElement = renderElement(makeExpressionEl(state.expressions[0]));
+  const expressElement = renderElement(makeExpressionEl(state.expressions[0], state.settings.regime));
   render(gameElement.querySelector('.game__expr'), expressElement);
   render(main, gameElement);
   initGameScreen();
@@ -201,7 +201,7 @@ const startGame = () => {
     // progressBar.style.width = '0%';
     setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
     renderNotDevScreen();
-  } else if (currSet.regime === 'lesson') {
+  } else if (currSet.regime === 'lesson' || currSet.regime === 'exam') {
     // Готовим примеры для отобр-ния
     const rand = currSet.present === 'random';
     let expressions = generateNumbers(currSet.multipliers);
@@ -212,9 +212,9 @@ const startGame = () => {
     // Генерируем и меняем экран
     renderGameScreen();
     // console.log(expressions);
-  } else if (currSet.regime === 'exam') {
-    setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
-    renderNotDevScreen();
+    // } else if (currSet.regime === 'exam') {
+    // setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
+    // renderNotDevScreen();
   } else {
     setState('errorGameMessage', 'Что-то пошло не так');
     renderNotDevScreen();

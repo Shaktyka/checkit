@@ -20,6 +20,7 @@ let multiplicator_1 = null;
 let multiplicator_2 = null;
 let mult_result = null;
 let expressionBlock = null;
+let progressBar = null;
 //////////////////////////
 
 // ОБЩИЙ СТЕЙТ игры
@@ -114,6 +115,11 @@ const renderNextExpression = () => {
   currExprEl.replaceChild(expressEl, currExprElBlock);
 };
 
+// Изменение ширины прогресс-бара
+const changeProgressWidth = (index, amount) => {
+  progressBar.style.width = `${100 * (index + 1) / amount}%`;
+};
+
 // Обработчик клика по кнопке "Следующий"
 const nextBtnClickHandler = (evt) => {
   evt.preventDefault();
@@ -123,17 +129,23 @@ const nextBtnClickHandler = (evt) => {
   } else if (state.currExprIndex === state.expressions.length - 1) {
     renderNextExpression();
   }
+  // Меняем ширину прогресс-бара
+  changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 
 // Вешаем обработчики на элементы экрана игры
 const initGameScreen = () => {
   gameComponent = document.querySelector('.game-screen');
+  // Прогресс-бар
+  progressBar = gameComponent.querySelector('.game__progress-bar');
+  changeProgressWidth(state.currExprIndex, state.expressions.length);
+  // Элементы окна
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
-  gameForm = gameComponent.querySelector('.game__form');
-  multiplicator_1 = gameComponent.querySelector('.mult-1');
-  multiplicator_2 = gameComponent.querySelector('.mult-2');
-  mult_result = gameComponent.querySelector('.mult-result');
+  // gameForm = gameComponent.querySelector('.game__form');
+  // multiplicator_1 = gameComponent.querySelector('.mult-1');
+  // multiplicator_2 = gameComponent.querySelector('.mult-2');
+  // mult_result = gameComponent.querySelector('.mult-result');
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);
   nextBtn.addEventListener('click', nextBtnClickHandler);
@@ -143,6 +155,7 @@ const initGameScreen = () => {
 const renderGameScreen = () => {
   main.innerHTML = '';
   const gameElement = renderElement(makeGameScreen());
+  // Элемент выражения
   const expressElement = renderElement(makeExpressionEl(state.expressions[0]));
   render(gameElement.querySelector('.game__expr'), expressElement);
   render(main, gameElement);
@@ -185,8 +198,9 @@ const startGame = () => {
   // console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
   if (currSet.infinite === 'on') {
-   setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
-   renderNotDevScreen();
+    // progressBar.style.width = '0%';
+    setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
+    renderNotDevScreen();
   } else if (currSet.regime === 'lesson') {
     // Готовим примеры для отобр-ния
     const rand = currSet.present === 'random';

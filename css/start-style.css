@@ -164,6 +164,29 @@ body {
   padding: 70px 30px 80px;
 }
 
+.game__progress-wrap {
+  position: absolute;
+  width: 90%;
+  top: -5px;
+  height: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid brown;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px 1px rgba(0,0,0,0.2);
+}
+
+.game__progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 8px;
+  background-color: #e91e63;
+  border-radius: 5px;
+}
+
 .game__progress {
   position: absolute;
   left: 50%;
@@ -172,7 +195,8 @@ body {
 
   color: #002a54;
   width: 28%;
-  display: flex;
+  /*display: flex;*/
+  display: none;
   justify-content: center;
   margin-bottom: -10px;
   padding: 10px 20px;

@@ -212,16 +212,33 @@ const settingsFormSubmitHandler = (evt) => {
   evt.preventDefault();
   // Собираем настройки и записываем в объект
   const data = new FormData(settingsForm);
-  const settingsObj = Object.assign({}, settings);
-  settingsObj.regime = data.get('regime');
-  settingsObj.multipliers = data.getAll('multipliers');
-  settingsObj.present = data.get('present');
-  settingsObj.infinite = data.get('infinite');
-  state.settings = settingsObj;
-  // Сброс обработчиков с экрана настроек
-  removeSettingsListeners();
-  // Запускаем игру
-  startGame();
+  // Проверка на выбор хотя бы 1 множителя
+  if (data.getAll('multipliers').length === 0) {
+    toastr.options = {
+      "newestOnTop": false,
+      "positionClass": "toast-bottom-center",
+      "preventDuplicates": true,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+    toastr.warning('Нужно выбрать хотя бы один множитель');
+  } else {
+    const settingsObj = Object.assign({}, settings);
+    settingsObj.regime = data.get('regime');
+    settingsObj.multipliers = data.getAll('multipliers');
+    settingsObj.present = data.get('present');
+    settingsObj.infinite = data.get('infinite');
+    state.settings = settingsObj;
+    // Сброс обработчиков с экрана настроек
+    removeSettingsListeners();
+    // Запускаем игру
+    startGame();
+  }
 };
 
 // Рендерим экран результатов

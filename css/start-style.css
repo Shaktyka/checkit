@@ -280,6 +280,7 @@ body {
   padding: 0;
   text-decoration: underline;
   color: black;
+  text-transform: uppercase;
 }
 
 .multiplier__group {

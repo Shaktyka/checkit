@@ -1,7 +1,6 @@
 // Генерация экрана
 const makeNotDevScreen = (message = false) => {
   return `<section class="screen not-dev-screen">
-    <h2 class="screen__title not-dev-screen__title">Хммм...</h2>
     <div class="not-dev">
       <div class="not-dev__block">
         <p class="not-dev__text">${message}</p>

@@ -199,7 +199,7 @@ const startGame = () => {
   // Генерируем набор примеров в соотв-вии с настройками
   if (currSet.infinite === 'on') {
     // progressBar.style.width = '0%';
-    setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
+    setState('errorGameMessage', 'Не сейчас! Давай выберем что-нибудь другое!');
     renderNotDevScreen();
   } else if (currSet.regime === 'lesson' || currSet.regime === 'exam') {
     // Готовим примеры для отобр-ния
@@ -216,7 +216,7 @@ const startGame = () => {
     // setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
     // renderNotDevScreen();
   } else {
-    setState('errorGameMessage', 'Что-то пошло не так');
+    setState('errorGameMessage', 'Что-то пошло не так...');
     renderNotDevScreen();
   }
 };

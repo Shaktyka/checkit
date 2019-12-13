@@ -92,16 +92,16 @@ body {
   color: #BEE0FF;
 }
 
-/* Экран ещё не реализовано */
+/* Экран результатов */
 
-.not-dev-screen {
+.result {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
 }
 
-.not-dev__block {
+.result__block {
   display: flex;
   flex-direction: row-reverse;
   align-items: flex-start;
@@ -120,10 +120,42 @@ body {
   border-radius: 26px;
   border: 5px solid white;
   color: #002A54;
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.3);
+}
+
+/* Экран ещё не реализовано */
+
+.not-dev-screen {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-dev__block {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 50px 50px 30px 50px;
+
+  width: 870px;
+  min-height: 400px;
+  background-color: #ffffff;
+
+  background-image: url(../img/sven.jpg);
+  background-repeat: no-repeat;
+  background-position: center 0;
+  background-size: cover;
+
+  border-radius: 26px;
+  border: 5px solid white;
+  color: #002A54;
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.3);
 }
 
 .not-dev__text {
-  width: 400px;
+  width: 270px;
   padding: 30px;
   margin: 0;
   background-color: white;

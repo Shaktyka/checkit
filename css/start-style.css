@@ -160,6 +160,12 @@ body {
   padding: 70px 30px 80px;
 }
 
+.game__progress {
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .game__form {
   height: 100%;
   display: flex;

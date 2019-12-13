@@ -3,6 +3,9 @@ const makeGameScreen = (errorMessage = false) => {
   return `<section class="screen game-screen">
     <h2 class="screen__title game-screen__title">Помоги Эльзе запомнить пример:</h2>
     <div class="game">
+      <div class="game__progress">
+        1 / 10
+      </div>
       <div class="game__block">
         <form class="game__form" name="game-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
           <div class="game__expr">

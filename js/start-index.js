@@ -29,7 +29,8 @@ const state = {
   settings: null,
   expressions: null,
   errorGameMessage: '',
-  currExprIndex: 0
+  currExprIndex: 0,
+  end: false
 };
 
 // Объект примера
@@ -107,6 +108,8 @@ const exitBtnClickHandler = (evt) => {
 
 // Рендеринг примера
 const renderNextExpression = () => {
+  // Меняем ширину прогресс-бара
+  changeProgressWidth(state.currExprIndex, state.expressions.length);
   // Отрендерить следующий пример
   const nextEl = state.expressions[state.currExprIndex];
   const expressEl = renderElement(makeExpressionEl(nextEl, state.settings.regime));
@@ -123,14 +126,20 @@ const changeProgressWidth = (index, amount) => {
 // Обработчик клика по кнопке "Следующий"
 const nextBtnClickHandler = (evt) => {
   evt.preventDefault();
+  console.log(state.currExprIndex);
+  if (state.end) {
+    console.log(1);
+  }
+
   if (state.currExprIndex < state.expressions.length - 1) {
     state.currExprIndex += 1;
     renderNextExpression();
   } else if (state.currExprIndex === state.expressions.length - 1) {
     renderNextExpression();
+  } else {
+    setState('errorGameMessage', 'Что-то пошло не так...');
+    renderNotDevScreen();
   }
-  // Меняем ширину прогресс-бара
-  changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 
 // Вешаем обработчики на элементы экрана игры
@@ -142,10 +151,6 @@ const initGameScreen = () => {
   // Элементы окна
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
-  // gameForm = gameComponent.querySelector('.game__form');
-  // multiplicator_1 = gameComponent.querySelector('.mult-1');
-  // multiplicator_2 = gameComponent.querySelector('.mult-2');
-  // mult_result = gameComponent.querySelector('.mult-result');
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);
   nextBtn.addEventListener('click', nextBtnClickHandler);
@@ -157,8 +162,10 @@ const renderGameScreen = () => {
   const gameElement = renderElement(makeGameScreen());
   // Элемент выражения
   const expressElement = renderElement(makeExpressionEl(state.expressions[0], state.settings.regime));
+
   render(gameElement.querySelector('.game__expr'), expressElement);
   render(main, gameElement);
+
   initGameScreen();
 };
 

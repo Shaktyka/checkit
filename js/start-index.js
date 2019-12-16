@@ -4,12 +4,6 @@ let gameComponent = null; // компонент игры
 let resultComponent = null; // компонент результатов
 let notDevComponent =  null;
 let settingsForm = null; // форма настроек
-const settings = { // объект для настроек игры
-  regime: null,
-  multipliers: null,
-  present: null,
-  infinite: null
-};
 let selectAllBtn = null;
 let multiplicators = null;
 // Экран игры
@@ -31,9 +25,9 @@ const messages = {
   'ERROR': 'Этот режим ещё не реализован, давай выберем другой.'
 };
 
-// Объект результатов 
+// Объект результатов
 const results = {
-  
+
 };
 
 //////////////////////////
@@ -159,7 +153,7 @@ const renderNextSlide = () => {
   changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 
-// Смена примера  
+// Смена примера
 const showNextSlide =() => {
   state.currExprIndex += 1;
 
@@ -265,7 +259,7 @@ const initResultScreen = () => {
   resultComponent = document.querySelector('.result');
   exitAgainBtn = resultComponent.querySelector('.result__again-btn');
   exitResultBtn = resultComponent.querySelector('.result__exit-btn');
-  
+
   exitAgainBtn.addEventListener('click', exitAgainBtnClickHandler);
   exitResultBtn.addEventListener('click', exitResultBtnClickHandler);
   // document.addEventListener('keydown', documentKeydownHandler); // дописать на ESC
@@ -316,6 +310,21 @@ const startGame = () => {
   }
 };
 
+// Перебираем все настройки из formData в объект
+const parseSettings = (formData) => {
+  const settObj = {
+    multipliers: []
+  };
+  for(let [name, value] of formData) {
+    if (!settObj[name]) {
+      settObj[name] = value;
+    } else {
+      settObj.multipliers.push(value);
+    }
+  }
+  return settObj;
+};
+
 // Обработчик сабмита формы настроек
 const settingsFormSubmitHandler = (evt) => {
   evt.preventDefault();
@@ -337,15 +346,8 @@ const settingsFormSubmitHandler = (evt) => {
     };
     toastr.warning('Нужно выбрать хотя бы один множитель');
   } else {
-    const settingsObj = Object.assign({}, settings);
-    settingsObj.regime = data.get('regime');
-    settingsObj.multipliers = data.getAll('multipliers');
-    settingsObj.present = data.get('present');
-    settingsObj.infinite = data.get('infinite');
-    state.settings = settingsObj;
-    // Сброс обработчиков с экрана настроек
+    state.settings = parseSettings(data);
     removeSettingsListeners();
-    // Запускаем игру
     startGame();
   }
 };

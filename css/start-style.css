@@ -427,9 +427,15 @@ body {
 }
 
 .present {
-  width: 49%;
+  width: 53%;
   /*display: flex;
   justify-content: space-between;*/
+}
+
+.present__group {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .adult {
@@ -438,7 +444,7 @@ body {
 }
 
 .infinite {
-  width: 49%;
+  width: 45%;
   /*display: flex;
   justify-content: center;*/
 }

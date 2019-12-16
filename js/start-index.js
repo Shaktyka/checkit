@@ -1,3 +1,4 @@
+// Элементы
 const main = document.querySelector('.page__main');
 let settingsComponent = null; // компонент настроек
 let gameComponent = null; // компонент игры
@@ -25,11 +26,6 @@ const messages = {
   'ERROR': 'Этот режим ещё не реализован, давай выберем другой.'
 };
 
-// Объект результатов
-let results = {};
-
-//////////////////////////
-
 // СТЕЙТ игры
 let state = {};
 
@@ -48,9 +44,11 @@ const expression = {
   response: null
 };
 
+// Объект результата игры
+let results = {};
+
 // Генерация случайного числа от min до max включительно
 const getRandomNumber = (min, max) => min + Math.floor(Math.random() * (max + 1 - min));
-// Пример: colors[getRandomNumber(0, colors.length - 1)];
 
 // Запись в стейт
 const setState = (key, val) => {
@@ -293,9 +291,10 @@ const startGame = () => {
   } else if (currSet.regime === 'lesson' || currSet.regime === 'exam') {
     // Готовим примеры для отобр-ния
     const rand = currSet.present === 'random';
-    let expressions = generateNumbers(currSet.multipliers);
+    const rand_hard = currSet.present === 'random-hard';
+    let expressions = generateNumbers(currSet.multipliers, rand_hard);
     if (rand) {
-      expressions = shuffleArray(expressions.slice())
+      expressions = shuffleArray(expressions.slice());
     }
     setState('expressions', expressions);
     // Включаем экран игры

@@ -85,6 +85,10 @@ const makeSettingsScreen = () => {
               <input class="present__radio" type="radio" name="present" id="random" value="random">
               случайно
             </label>
+            <label for="random-hard">
+              <input class="present__radio" type="radio" name="present" id="random-hard" value="random-hard">
+              случайно+
+            </label>
           </div>
         </div>
         <!-- Бесконечная игра -->

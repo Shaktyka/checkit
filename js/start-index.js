@@ -54,6 +54,10 @@ const expression = {
   response: null
 };
 
+// Генерация случайного числа от min до max включительно
+const getRandomNumber = (min, max) => min + Math.floor(Math.random() * (max + 1 - min));
+// Пример: colors[getRandomNumber(0, colors.length - 1)];
+
 // Запись в стейт
 const setState = (key, val) => {
   state[key] = val;

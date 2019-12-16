@@ -109,7 +109,7 @@ const exitBtnClickHandler = (evt) => {
 // Рендеринг примера
 const renderNextExpression = () => {
   // Меняем ширину прогресс-бара
-  changeProgressWidth(state.currExprIndex, state.expressions.length);
+  // changeProgressWidth(state.currExprIndex, state.expressions.length);
   // Отрендерить следующий пример
   const nextEl = state.expressions[state.currExprIndex];
   const expressEl = renderElement(makeExpressionEl(nextEl, state.settings.regime));
@@ -147,7 +147,7 @@ const initGameScreen = () => {
   gameComponent = document.querySelector('.game-screen');
   // Прогресс-бар
   progressBar = gameComponent.querySelector('.game__progress-bar');
-  changeProgressWidth(state.currExprIndex, state.expressions.length);
+  // changeProgressWidth(state.currExprIndex, state.expressions.length);
   // Элементы окна
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');

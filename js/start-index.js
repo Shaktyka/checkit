@@ -21,6 +21,9 @@ let multiplicator_2 = null;
 let mult_result = null;
 let expressionBlock = null;
 let progressBar = null;
+// Экран результатов
+let exitAgainBtn = null;
+let exitResultBtn = null;
 
 // Служебные сообщения
 const messages = {
@@ -159,8 +162,6 @@ const showNextSlide =() => {
     renderNextSlide(); // показываем след. пример
   } else {
     renderResultScreen(); // экран результатов
-    // setState('errorGameMessage', 'Что-то пошло не так...');
-    // renderNotDevScreen();
   }
 };
 
@@ -172,12 +173,29 @@ const nextBtnClickHandler = (evt) => {
 
 // Обработчик нажатий на клавиши
 const documentKeydownHandler = (evt) => {
-  if (evt.keyCode === 39) {
-    showNextSlide(); // следующий пример
-  } else if (state.stage === 'notdev' && evt.keyCode === 27) {
-    // Возвращаемся на экран настроек
-    exitNotDevBtnClickHandler();
+
+  if (state.stage === 'settings') {
+    // если экран настроек
+  } else if (state.stage === 'notdev') { // если экран "В разработке"
+    if (evt.keyCode === 27) {
+      exitNotDevBtnClickHandler(); // Возвращаемся на экран настроек
+    }
+  } else if (state.stage === 'game') {
+    if (evt.keyCode === 39) {
+      showNextSlide(); // следующий пример
+    }
+  } else if (state.stage === 'result') {
+    console.log(state.stage, evt.keyCode);
+  } else {
+    console.log('Что-то пошло не так');
   }
+
+  // if (evt.keyCode === 39) {
+  //   showNextSlide(); // следующий пример
+  // } else if (state.stage === 'notdev' && evt.keyCode === 27) {
+    
+  //   exitNotDevBtnClickHandler();
+  // }
 };
 
 // Вешаем обработчики на элементы экрана игры
@@ -217,12 +235,41 @@ const initNotDevScreen = () => {
   document.addEventListener('keydown', documentKeydownHandler);
 };
 
+// Обработчик клика по кнопке "Ещё раз"
+const exitAgainBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  console.log('ag');
+  // Запуск той же игры с теми же настройками
+  // Сброс обработчиков с окна рез-в
+};
+
+// Сброс обраб-в в окна результатов
+const removeResultScreenListeners =() => {
+  exitAgainBtn.removeEventListener('click', exitAgainBtnClickHandler);
+  exitResultBtn.removeEventListener('click', exitResultBtnClickHandler);
+};
+
+// Обработчик клика по кнопке "Новая игра"
+const exitResultBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  renderSettingsScreen();
+  setState('stage', 'settings');
+  setState('settings', null);
+  setState('expressions', null);
+  setState('errorGameMessage', '');
+  setState('currExprIndex', 0);
+  removeResultScreenListeners(); // Сброс обработчиков с окна рез-в
+};
+
 // Обработчики на экран Результатов
 const initResultScreen = () => {
-  resultComponent = document.querySelector('.results');
-  // exitNotDevBtn = notDevComponent.querySelector('.not-dev__exit-btn');
-  // exitNotDevBtn.addEventListener('click', exitNotDevBtnClickHandler);
-  // document.addEventListener('keydown', documentKeydownHandler);
+  resultComponent = document.querySelector('.result');
+  exitAgainBtn = resultComponent.querySelector('.result__again-btn');
+  exitResultBtn = resultComponent.querySelector('.result__exit-btn');
+  
+  exitAgainBtn.addEventListener('click', exitAgainBtnClickHandler);
+  exitResultBtn.addEventListener('click', exitResultBtnClickHandler);
+  // document.addEventListener('keydown', documentKeydownHandler); // дописать на ESC
 };
 
 // Рендерим экран "Режим не разработан"
@@ -237,6 +284,7 @@ const renderNotDevScreen = () => {
 // Рендерим экран результатов
 const renderResultScreen = () => {
   main.innerHTML = '';
+  // Собрать результаты и передать ниже
   const resultEl = renderElement(makeResultScreen());
   render(main, resultEl);
   setState('stage', 'result');

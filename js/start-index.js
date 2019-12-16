@@ -212,12 +212,9 @@ const initGameScreen = () => {
 const renderGameScreen = () => {
   main.innerHTML = '';
   const gameElement = renderElement(makeGameScreen());
-
   const expressElement = renderElement(makeExpressionEl(state.expressions[0], state.settings.regime));
-
   render(gameElement.querySelector('.game__expr'), expressElement);
   render(main, gameElement);
-
   initGameScreen();
 };
 
@@ -229,16 +226,20 @@ const initNotDevScreen = () => {
   document.addEventListener('keydown', documentKeydownHandler);
 };
 
-// Обработчик клика по кнопке "Ещё раз"
-const exitAgainBtnClickHandler = (evt) => {
-  evt.preventDefault();
-  console.log('ag');
-  // Сброс обработчиков с окна рез-в
-  removeResultScreenListeners();
-  // Запуск той же игры с теми же настройками
+// Функция "Начать заново"
+const restartGame = () => {
   setState('stage', 'game');
   setState('currExprIndex', 0);
   renderGameScreen();
+};
+
+// Обработчик клика по кнопке "Ещё раз"
+const exitAgainBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  // Сброс обработчиков с окна рез-в
+  removeResultScreenListeners();
+  // Запуск той же игры с теми же настройками
+  restartGame();
 };
 
 // Сброс обраб-в в окна результатов

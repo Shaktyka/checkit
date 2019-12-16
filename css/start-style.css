@@ -204,7 +204,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
-  border: 1px solid brown;
+  border: 1px solid #567ca3;
   border-radius: 5px;
   box-shadow: 0 1px 5px 1px rgba(0,0,0,0.2);
 }
@@ -215,7 +215,8 @@ body {
   left: 0;
   width: 0;
   height: 8px;
-  background-color: #e91e63;
+  /*background-color: #e91e63;*/
+  background-color: #ff5722;
   border-radius: 5px;
 }
 

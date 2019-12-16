@@ -26,14 +26,14 @@ const messages = {
 };
 
 // Объект результатов
-const results = {
-
-};
+let results = {};
 
 //////////////////////////
 
-// ОБЩИЙ СТЕЙТ игры
-const state = {
+// СТЕЙТ игры
+let state = {};
+
+const cleanState = {
   stage: null,
   settings: null,
   expressions: null,
@@ -114,19 +114,15 @@ const removeNotDevScreenListeners = () => {
 };
 
 // Обнуление стейта
-const startState = () => {
-  setState('stage', 'settings');
-  setState('settings', null);
-  setState('expressions', null);
-  setState('errorGameMessage', '');
-  setState('currExprIndex', 0);
+const resetState = () => {
+  state = Object.assign({}, cleanState);
 };
 
 // Обработчик клика по кнопке "Выйти"
 const exitBtnClickHandler = (evt) => {
   evt.preventDefault();
   renderSettingsScreen();
-  startState();
+  resetState();
   removeGameScreenListeners();
 };
 
@@ -134,7 +130,7 @@ const exitBtnClickHandler = (evt) => {
 const exitNotDevBtnClickHandler = (evt) => {
   // evt.preventDefault();
   renderSettingsScreen();
-  startState();
+  resetState();
   removeNotDevScreenListeners();
 };
 
@@ -250,7 +246,7 @@ const removeResultScreenListeners =() => {
 const exitResultBtnClickHandler = (evt) => {
   evt.preventDefault();
   renderSettingsScreen();
-  startState();
+  resetState();
   removeResultScreenListeners(); // Сброс обработчиков с окна рез-в
 };
 
@@ -386,6 +382,7 @@ const renderSettingsScreen = () => {
   main.innerHTML = '';
   const settingsEl = renderElement(makeSettingsScreen());
   render(main, settingsEl);
+  resetState();
   setState('stage', 'settings');
   initSettingsScreen();
 };

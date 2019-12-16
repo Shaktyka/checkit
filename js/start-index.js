@@ -293,7 +293,7 @@ const startGame = () => {
     const rand = currSet.present === 'random';
     const rand_hard = currSet.present === 'random-hard';
     let expressions = generateNumbers(currSet.multipliers, rand_hard);
-    if (rand) {
+    if (rand || rand_hard) {
       expressions = shuffleArray(expressions.slice());
     }
     setState('expressions', expressions);

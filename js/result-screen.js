@@ -1,5 +1,5 @@
 // Генерация экрана
-const makeResultScreen = (results, message = false) => {
+const makeResultScreen = (results, message = `Задание выполнено`) => {
   return `<section class="screen result">
     <h2 class="screen__title result__title">Отлично!</h2>
     <div class="result__wrap">

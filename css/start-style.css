@@ -276,6 +276,11 @@ body {
   background-color: #2699FB;
 }
 
+.game-screen__next-btn:hover,
+.game-screen__next-btn:focus {
+  background-color: #248de7;
+}
+
 /* Экран настроек */
 
 .settings {
@@ -405,10 +410,16 @@ body {
   border-radius: 24px;
   font-size: 18px;
   text-transform: none;
+  box-shadow: 0 2px 10px -1px rgba(0,0,0,0.2);
 }
 
 .settings__submit-btn {
   background-color: #13CF58;
+}
+
+.settings__submit-btn:hover,
+.settings__submit-btn:focus {
+  background-color: #13bc51;
 }
 
 .settings__reset-btn {

@@ -134,36 +134,39 @@ const changeProgressWidth = (index, amount) => {
   progressBar.style.width = `${100 * (index + 1) / amount}%`;
 };
 
-// Смена примера  
-const showNextSlide =() => {
+// Рендерим след. элемент с примером
+const renderNextSlide = () => {
   const nextEl = state.expressions[state.currExprIndex];
   const expressEl = renderElement(makeExpressionEl(nextEl, state.settings.regime));
   const currExprEl = document.querySelector('.game__expr');
   const currExprElBlock = currExprEl.querySelector('.game__expr-wrap');
   currExprEl.replaceChild(expressEl, currExprElBlock);
+  changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 
-// Обработчик клика по кнопке "Следующий"
-const nextBtnClickHandler = (evt) => {
-  evt.preventDefault();
+// Смена примера  
+const showNextSlide =() => {
   state.currExprIndex += 1;
 
   if (state.currExprIndex <= state.expressions.length - 1) {
-    showNextSlide(); // показываем след. пример
-    changeProgressWidth(state.currExprIndex, state.expressions.length);
+    renderNextSlide(); // показываем след. пример
   } else {
     setState('errorGameMessage', 'Что-то пошло не так...');
     renderNotDevScreen();
   }
 };
 
+// Обработчик клика по кнопке "Следующий"
+const nextBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  showNextSlide();
+};
+
 // Обработчик нажатий на клавиши
 const documentKeydownHandler = (evt) => {
-  evt.preventDefault();
-  if (evt.keyCode === 38) {
-    // Показываем следующий пример
-    showNextSlide();
-  } else if (evt.keyCode === 27) {
+  if (evt.keyCode === 39) {
+    showNextSlide(); // следующий пример
+  } else if (state.stage === 'notdev' && evt.keyCode === 27) {
     // Возвращаемся на экран настроек
     exitNotDevBtnClickHandler();
   }
@@ -212,6 +215,7 @@ const renderNotDevScreen = () => {
   const notDevElement = renderElement(makeNotDevScreen(state.errorGameMessage));
   render(main, notDevElement);
   initNotDevScreen();
+  setState('stage', 'notdev');
 };
 
 // Старт игры

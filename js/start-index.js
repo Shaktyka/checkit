@@ -115,15 +115,20 @@ const removeNotDevScreenListeners = () => {
   document.removeEventListener('keydown', documentKeydownHandler);
 };
 
-// Обработчик клика по кнопке "Выйти"
-const exitBtnClickHandler = (evt) => {
-  evt.preventDefault();
-  renderSettingsScreen();
+// Обнуление стейта
+const startState = () => {
   setState('stage', 'settings');
   setState('settings', null);
   setState('expressions', null);
   setState('errorGameMessage', '');
   setState('currExprIndex', 0);
+};
+
+// Обработчик клика по кнопке "Выйти"
+const exitBtnClickHandler = (evt) => {
+  evt.preventDefault();
+  renderSettingsScreen();
+  startState();
   removeGameScreenListeners();
 };
 
@@ -131,11 +136,7 @@ const exitBtnClickHandler = (evt) => {
 const exitNotDevBtnClickHandler = (evt) => {
   // evt.preventDefault();
   renderSettingsScreen();
-  setState('stage', 'settings');
-  setState('settings', null);
-  setState('expressions', null);
-  setState('errorGameMessage', '');
-  setState('currExprIndex', 0);
+  startState();
   removeNotDevScreenListeners();
 };
 
@@ -189,13 +190,6 @@ const documentKeydownHandler = (evt) => {
   } else {
     console.log('Что-то пошло не так');
   }
-
-  // if (evt.keyCode === 39) {
-  //   showNextSlide(); // следующий пример
-  // } else if (state.stage === 'notdev' && evt.keyCode === 27) {
-    
-  //   exitNotDevBtnClickHandler();
-  // }
 };
 
 // Вешаем обработчики на элементы экрана игры
@@ -239,8 +233,12 @@ const initNotDevScreen = () => {
 const exitAgainBtnClickHandler = (evt) => {
   evt.preventDefault();
   console.log('ag');
-  // Запуск той же игры с теми же настройками
   // Сброс обработчиков с окна рез-в
+  removeResultScreenListeners();
+  // Запуск той же игры с теми же настройками
+  setState('stage', 'game');
+  setState('currExprIndex', 0);
+  renderGameScreen();
 };
 
 // Сброс обраб-в в окна результатов
@@ -253,11 +251,7 @@ const removeResultScreenListeners =() => {
 const exitResultBtnClickHandler = (evt) => {
   evt.preventDefault();
   renderSettingsScreen();
-  setState('stage', 'settings');
-  setState('settings', null);
-  setState('expressions', null);
-  setState('errorGameMessage', '');
-  setState('currExprIndex', 0);
+  startState();
   removeResultScreenListeners(); // Сброс обработчиков с окна рез-в
 };
 
@@ -392,7 +386,6 @@ const renderSettingsScreen = () => {
 // Запуск игры
 const start = () => {
   renderSettingsScreen();
-  // renderResultScreen();
 };
 
 start();

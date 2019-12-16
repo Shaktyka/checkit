@@ -99,6 +99,12 @@ const removeGameScreenListeners = () => {
   document.removeEventListener('keydown', documentKeydownHandler);
 };
 
+// Сброс обраб-в с элементов экрана игры
+const removeNotDevScreenListeners = () => {
+  exitNotDevBtn.removeEventListener('click', exitNotDevBtnClickHandler);
+  document.removeEventListener('keydown', documentKeydownHandler);
+};
+
 // Обработчик клика по кнопке "Выйти"
 const exitBtnClickHandler = (evt) => {
   evt.preventDefault();
@@ -109,6 +115,18 @@ const exitBtnClickHandler = (evt) => {
   setState('errorGameMessage', '');
   setState('currExprIndex', 0);
   removeGameScreenListeners();
+};
+
+// Обработчик выхода
+const exitNotDevBtnClickHandler = (evt) => {
+  // evt.preventDefault();
+  renderSettingsScreen();
+  setState('stage', 'settings');
+  setState('settings', null);
+  setState('expressions', null);
+  setState('errorGameMessage', '');
+  setState('currExprIndex', 0);
+  removeNotDevScreenListeners();
 };
 
 // Изменение ширины прогресс-бара
@@ -145,6 +163,9 @@ const documentKeydownHandler = (evt) => {
   if (evt.keyCode === 38) {
     // Показываем следующий пример
     showNextSlide();
+  } else if (evt.keyCode === 27) {
+    // Возвращаемся на экран настроек
+    exitNotDevBtnClickHandler();
   }
 };
 
@@ -177,23 +198,12 @@ const renderGameScreen = () => {
   initGameScreen();
 };
 
-// Обработчик выхода
-const exitNotDevBtnClickHandler = (evt) => {
-  evt.preventDefault();
-  renderSettingsScreen();
-  setState('stage', 'settings');
-  setState('settings', null);
-  setState('expressions', null);
-  setState('errorGameMessage', '');
-  setState('currExprIndex', 0);
-  exitNotDevBtn.removeEventListener('click', exitNotDevBtnClickHandler);
-};
-
 // Обработчики на экран игры "Режим не реализован"
 const initNotDevScreen = () => {
   notDevComponent = document.querySelector('.not-dev-screen');
   exitNotDevBtn = notDevComponent.querySelector('.not-dev__exit-btn');
   exitNotDevBtn.addEventListener('click', exitNotDevBtnClickHandler);
+  document.addEventListener('keydown', documentKeydownHandler);
 };
 
 // Рендерим экран "Режим не разработан"

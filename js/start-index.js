@@ -22,10 +22,17 @@ let mult_result = null;
 let expressionBlock = null;
 let progressBar = null;
 
+// Служебные сообщения
 const messages = {
   'DEV': 'Не сейчас! Давай выберем что-нибудь другое!',
   'ERROR': 'Этот режим ещё не реализован, давай выберем другой.'
 };
+
+// Объект результатов 
+const results = {
+  
+};
+
 //////////////////////////
 
 // ОБЩИЙ СТЕЙТ игры
@@ -151,8 +158,9 @@ const showNextSlide =() => {
   if (state.currExprIndex <= state.expressions.length - 1) {
     renderNextSlide(); // показываем след. пример
   } else {
-    setState('errorGameMessage', 'Что-то пошло не так...');
-    renderNotDevScreen();
+    renderResultScreen(); // экран результатов
+    // setState('errorGameMessage', 'Что-то пошло не так...');
+    // renderNotDevScreen();
   }
 };
 
@@ -209,13 +217,30 @@ const initNotDevScreen = () => {
   document.addEventListener('keydown', documentKeydownHandler);
 };
 
+// Обработчики на экран Результатов
+const initResultScreen = () => {
+  resultComponent = document.querySelector('.results');
+  // exitNotDevBtn = notDevComponent.querySelector('.not-dev__exit-btn');
+  // exitNotDevBtn.addEventListener('click', exitNotDevBtnClickHandler);
+  // document.addEventListener('keydown', documentKeydownHandler);
+};
+
 // Рендерим экран "Режим не разработан"
 const renderNotDevScreen = () => {
   main.innerHTML = '';
   const notDevElement = renderElement(makeNotDevScreen(state.errorGameMessage));
   render(main, notDevElement);
-  initNotDevScreen();
   setState('stage', 'notdev');
+  initNotDevScreen();
+};
+
+// Рендерим экран результатов
+const renderResultScreen = () => {
+  main.innerHTML = '';
+  const resultEl = renderElement(makeResultScreen());
+  render(main, resultEl);
+  setState('stage', 'result');
+  initResultScreen();
 };
 
 // Старт игры
@@ -276,14 +301,6 @@ const settingsFormSubmitHandler = (evt) => {
     // Запускаем игру
     startGame();
   }
-};
-
-// Рендерим экран результатов
-const renderResultScreen = () => {
-  main.appendChild(renderResultScreesEl());
-  resultComponent = document.querySelector('.results');
-  // Обработчики эл-тов в компоненте
-  // gameScreenInit();
 };
 
 // Обработчик клика по кнопке "Выбрать все (множители)"

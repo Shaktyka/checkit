@@ -7,8 +7,11 @@ const makeResultScreen = (results, message = false) => {
         <p class="result__text">${message}</p>
       </div>
       <div class="result__btns">
+        <button class="btn btn__act game__btn result__again-btn" type="button">
+          Переиграть
+        </button>
         <button class="btn btn__act game__btn result__exit-btn" type="button">
-          Играть ещё
+          Новая игра
         </button>
       </div>
     </div>

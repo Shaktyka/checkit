@@ -4,46 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Умножайка</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/start-style.css">
+  <link rel="stylesheet" href="./css/toastr.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
 </head>
 
-<body>
-  <header>Умножайка</header>
-  <main>
-    <div class="content">
-      <div class="content__btns">
-        <button class="btn btn__start content__start-btn" type="button">
-          Играть
-        </button>
-        <div class="content__checks">
-        <label for="random">
-          <input class="content__random-control" type="checkbox" id="random">
-          В случайном порядке
-        </label>
-        <label for="random_numb">
-          <input class="content__numb-control" type="checkbox" id="random_numb">
-          Без ответов
-        </label>
-        </div>
-        <!-- <button class="btn btn__replay content__replay-btn" type="button">
-          Заново
-        </button> -->
-      </div>
-      <section class="screen">
-        <p class="screen__output"></p>
-      </section>
-      <div class="controls v-hidden">
-        <button class="btn btn__control btn__control--prev" type="button">
-          Предыдущий
-        </button>
-        <button class="btn btn__control btn__control--next" type="button">
-          Следующий
-        </button>
-      </div>
-    </div>
+<body class="page">
+  <!-- Хедер -->
+  <header class="page__header">
+    <h1 class="page__title"></h1>
+  </header>
+  <main class="page__main">
+
   </main>
-  <footer></footer>
-  <script src="./js/index.js"></script>
+  <!-- Футер -->
+  <footer class="page__footer"></footer>
+  <!-- СКРИПТЫ служебные -->
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/toastr.min.js"></script>
+  <!-- СКРИПТЫ кастомные -->
+  <script src="./js/data.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/settings-screen.js"></script>
+  <script src="./js/expression.js"></script>
+  <script src="./js/game-message.js"></script>
+  <script src="./js/game-screen.js"></script>
+  <script src="./js/not-developed-screen.js"></script>
+  <script src="./js/result-screen.js"></script>
+  <script src="./js/start-index.js"></script>
 </body>
 
 </html>

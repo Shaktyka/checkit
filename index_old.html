@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Умножайка</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <header>Умножайка</header>
+  <main>
+    <div class="content">
+      <div class="content__btns">
+        <button class="btn btn__start content__start-btn" type="button">
+          Играть
+        </button>
+        <div class="content__checks">
+        <label for="random">
+          <input class="content__random-control" type="checkbox" id="random">
+          В случайном порядке
+        </label>
+        <label for="random_numb">
+          <input class="content__numb-control" type="checkbox" id="random_numb">
+          Без ответов
+        </label>
+        </div>
+        <!-- <button class="btn btn__replay content__replay-btn" type="button">
+          Заново
+        </button> -->
+      </div>
+      <section class="screen">
+        <p class="screen__output"></p>
+      </section>
+      <div class="controls v-hidden">
+        <button class="btn btn__control btn__control--prev" type="button">
+          Предыдущий
+        </button>
+        <button class="btn btn__control btn__control--next" type="button">
+          Следующий
+        </button>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>

@@ -8,11 +8,11 @@ const makeSettingsScreen = () => {
         <div class="settings__group regime">
           <h3 class="settings__subtitle">Режим:</h3>
           <p class="regime__wrap">
-            <label for="lesson">
+            <label for="lesson" title="Тренировочный режим: показываются примеры с ответами">
               <input class="lesson__radio" type="radio" name="regime" id="lesson" value="lesson" checked>
               урок
             </label>
-            <label for="exam">
+            <label for="exam" title="Режим проверки: нужно правильно решить пример">
               <input class="exam__radio" type="radio" name="regime" id="exam" value="exam">
               угадайка
             </label>
@@ -22,7 +22,7 @@ const makeSettingsScreen = () => {
         <div class="settings__group multiplier">
           <h3 class="settings__subtitle multiplier__title">
             <span class="multiplier__text">Множители:</span>
-            <button class="btn btn__act multiplier__all" type="button">
+            <button class="btn btn__act multiplier__all" type="button" title="Нажмите, чтобы выбрать сразу все множители">
               Выбрать все
             </button>
           </h3>
@@ -76,16 +76,16 @@ const makeSettingsScreen = () => {
         <!-- Выбор как показывать -->
         <div class="settings__group present">
           <h3 class="settings__subtitle">Показывать примеры:</h3>
-          <div class="present__group">
+          <div class="present__group" title="Примеры выводятся по-порядку">
             <label for="order">
               <input class="present__radio" type="radio" name="present" id="order" value="order" checked>
               по-порядку
             </label>
-            <label for="random">
+            <label for="random" title="Примеры показываются в случайном порядке">
               <input class="present__radio" type="radio" name="present" id="random" value="random">
               случайно
             </label>
-            <label for="random-hard">
+            <label for="random-hard" title="Случайно выводятся и примеры и цифры">
               <input class="present__radio" type="radio" name="present" id="random-hard" value="random-hard">
               случайно+
             </label>
@@ -94,7 +94,7 @@ const makeSettingsScreen = () => {
         <!-- Бесконечная игра -->
         <div class="settings__group infinite">
           <h3 class="settings__subtitle">Для выносливых:</h3>
-          <label for="infinite">
+          <label for="infinite" title="Тренируйтесь сколько угодно :)">
             <input class="infinite__check" type="checkbox" name="infinite" id="infinite">
             Бесконечная игра
           </label>

@@ -34,8 +34,7 @@ const state = {
   settings: null,
   expressions: null,
   errorGameMessage: '',
-  currExprIndex: 0,
-  end: false
+  currExprIndex: 0
 };
 
 // Объект примера
@@ -112,14 +111,6 @@ const exitBtnClickHandler = (evt) => {
   removeGameScreenListeners();
 };
 
-// Рендеринг примера
-const renderNextExpression = () => {
-  // Меняем ширину прогресс-бара
-  // changeProgressWidth(state.currExprIndex, state.expressions.length);
-  // Отрендерить следующий пример
-  
-};
-
 // Изменение ширины прогресс-бара
 const changeProgressWidth = (index, amount) => {
   progressBar.style.width = `${100 * (index + 1) / amount}%`;
@@ -141,6 +132,7 @@ const nextBtnClickHandler = (evt) => {
 
   if (state.currExprIndex <= state.expressions.length - 1) {
     showNextSlide(); // показываем след. пример
+    changeProgressWidth(state.currExprIndex, state.expressions.length);
   } else {
     setState('errorGameMessage', 'Что-то пошло не так...');
     renderNotDevScreen();
@@ -161,7 +153,7 @@ const initGameScreen = () => {
   gameComponent = document.querySelector('.game-screen');
   // Прогресс-бар
   progressBar = gameComponent.querySelector('.game__progress-bar');
-  // changeProgressWidth(state.currExprIndex, state.expressions.length);
+  changeProgressWidth(state.currExprIndex, state.expressions.length);
   // Элементы окна
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
@@ -171,12 +163,6 @@ const initGameScreen = () => {
   // Вешаем обработчик нажатий на клавиатуру
   document.addEventListener('keydown', documentKeydownHandler);
 };
-
-  // const nextEl = state.expressions[state.currExprIndex];
-  // const expressEl = renderElement(makeExpressionEl(nextEl, state.settings.regime));
-  // const currExprEl = document.querySelector('.game__expr');
-  // const currExprElBlock = currExprEl.querySelector('.game__expr-wrap');
-  // currExprEl.replaceChild(expressEl, currExprElBlock);
 
 // Рендерим экран игры
 const renderGameScreen = () => {
@@ -224,7 +210,6 @@ const startGame = () => {
   setState('stage', 'game');
   // Получаем настройки
   const currSet = getStateKey('settings');
-  // console.log(currSet);
   // Генерируем набор примеров в соотв-вии с настройками
   if (currSet.infinite === 'on') {
     setState('errorGameMessage', messages['DEV']);
@@ -239,11 +224,6 @@ const startGame = () => {
     setState('expressions', expressions);
     // Включаем экран игры
     renderGameScreen();
-
-    // console.log(expressions);
-    // } else if (currSet.regime === 'exam') {
-    // setState('errorGameMessage', 'Этот режим ещё не реализован, давай выберем другой.');
-    // renderNotDevScreen();
   } else {
     setState('errorGameMessage', 'Что-то пошло не так...');
     renderNotDevScreen();

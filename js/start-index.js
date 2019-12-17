@@ -16,6 +16,7 @@ let multiplicator_2 = null;
 let mult_result = null;
 let expressionBlock = null;
 let progressBar = null;
+let resInput = null;
 // Экран результатов
 let exitAgainBtn = null;
 let exitResultBtn = null;
@@ -72,8 +73,6 @@ const shuffleArray = (array) => {
 
 // Функция по генерации набора примероа
 const generateNumbers = (arr, mixed = false) => {
-  // В стейт записывается тоже из места вызова
-  // А если рандомное расположение чисел, то можно будет случайно генерировать: в mult_1 или mult_2
   const numArr = [];
   const amount = 10;
   arr.forEach((num) => {
@@ -138,13 +137,11 @@ const changeProgressWidth = (index, amount) => {
 };
 
 // Рендерим след. элемент с примером
-const renderNextSlide = () => {
-  const nextEl = state.expressions[state.currExprIndex];
-  const expressEl = renderElement(makeExpressionEl(nextEl, state.settings.regime));
-  const currExprEl = document.querySelector('.game__expr');
-  const currExprElBlock = currExprEl.querySelector('.game__expr-wrap');
-  currExprEl.replaceChild(expressEl, currExprElBlock);
-  changeProgressWidth(state.currExprIndex, state.expressions.length);
+const renderExpression = () => {
+   const newExpressEl = renderElement(makeExpressionEl(state.expressions[state.currExprIndex], state.settings.regime));
+   expressionBlock.innerHTML = '';
+   expressionBlock.appendChild(newExpressEl);
+   changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 
 // Смена примера
@@ -152,7 +149,7 @@ const showNextSlide =() => {
   state.currExprIndex += 1;
 
   if (state.currExprIndex <= state.expressions.length - 1) {
-    renderNextSlide(); // показываем след. пример
+    renderExpression(); // показываем след. пример
   } else {
     renderResultScreen(); // экран результатов
   }
@@ -184,13 +181,11 @@ const documentKeydownHandler = (evt) => {
   }
 };
 
-// Вешаем обработчики на элементы экрана игры
+// Элементы экрана игры + обработчики
 const initGameScreen = () => {
   gameComponent = document.querySelector('.game-screen');
-  // Прогресс-бар
   progressBar = gameComponent.querySelector('.game__progress-bar');
-  changeProgressWidth(state.currExprIndex, state.expressions.length);
-  // Элементы окна
+  expressionBlock = document.querySelector('.game__expr');
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
   // Обработчики
@@ -204,10 +199,9 @@ const initGameScreen = () => {
 const renderGameScreen = () => {
   main.innerHTML = '';
   const gameElement = renderElement(makeGameScreen());
-  const expressElement = renderElement(makeExpressionEl(state.expressions[0], state.settings.regime));
-  render(gameElement.querySelector('.game__expr'), expressElement);
   render(main, gameElement);
   initGameScreen();
+  renderExpression();
 };
 
 // Обработчики на экран игры "Режим не реализован"

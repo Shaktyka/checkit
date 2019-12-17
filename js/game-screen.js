@@ -12,7 +12,7 @@ const makeGameScreen = (errorMessage = false) => {
       <div class="game__block">
         <form class="game__form" name="game-form" action="https://echo.htmlacademy.ru" method="post" autocomplete="off">
           <div class="game__expr">
-
+            <p>Примеры не найдены</p>
           </div>
           <p class="game__expr-text v-hidden">Пять на пять — двадцать пять</p>
         </form>

@@ -481,3 +481,16 @@ body {
   background-color: brown;
   margin-right: 20px;
 }
+
+/* Выражение */
+
+.expr__res {
+  display: inline-block;
+}
+
+.expr__res-field {
+  font-size: 130px;
+  width: 230px;
+  text-align: center;
+  color: #002A54;
+}

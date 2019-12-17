@@ -102,6 +102,7 @@ const removeGameScreenListeners = () => {
   exitBtn.removeEventListener('click', exitBtnClickHandler);
   nextBtn.removeEventListener('click', nextBtnClickHandler);
   document.removeEventListener('keydown', documentKeydownHandler);
+  gameForm.removeEventListener('submit', gameFormSubmitHandler);
 };
 
 // Сброс обраб-в с элементов экрана игры
@@ -136,11 +137,21 @@ const changeProgressWidth = (index, amount) => {
   progressBar.style.width = `${100 * (index + 1) / amount}%`;
 };
 
+// Обработка ввода в поле ответа
+const gameFormSubmitHandler = (evt) => {
+  evt.preventDefault();
+  console.log(1);
+};
+
 // Рендерим след. элемент с примером
 const renderExpression = () => {
    const newExpressEl = renderElement(makeExpressionEl(state.expressions[state.currExprIndex], state.settings.regime));
    expressionBlock.innerHTML = '';
    expressionBlock.appendChild(newExpressEl);
+   const respInput = document.querySelector('.expr__res-field');
+   if (respInput) {
+     respInput.focus();
+   }
    changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 
@@ -188,9 +199,11 @@ const initGameScreen = () => {
   expressionBlock = document.querySelector('.game__expr');
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
+  gameForm = gameComponent.querySelector('.game__form');
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);
   nextBtn.addEventListener('click', nextBtnClickHandler);
+  gameForm.addEventListener('submit', gameFormSubmitHandler);
   // Вешаем обработчик нажатий на клавиатуру
   document.addEventListener('keydown', documentKeydownHandler);
 };

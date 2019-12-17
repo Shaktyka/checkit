@@ -9,11 +9,11 @@ const makeSettingsScreen = () => {
           <h3 class="settings__subtitle">Режим:</h3>
           <p class="regime__wrap">
             <label for="lesson" title="Тренировочный режим: показываются примеры с ответами">
-              <input class="lesson__radio" type="radio" name="regime" id="lesson" value="lesson" checked>
+              <input class="lesson__radio" type="radio" name="regime" id="lesson" value="lesson">
               урок
             </label>
             <label for="exam" title="Режим проверки: нужно правильно решить пример">
-              <input class="exam__radio" type="radio" name="regime" id="exam" value="exam">
+              <input class="exam__radio" type="radio" name="regime" id="exam" value="exam" checked>
               угадайка
             </label>
           </p>
@@ -32,11 +32,11 @@ const makeSettingsScreen = () => {
               x1
             </label>
             <label class="multiplier__lbl" for="mult-2">
-              <input class="multiplier__check" type="checkbox" id="mult-2" name="multipliers" value="2" checked>
+              <input class="multiplier__check" type="checkbox" id="mult-2" name="multipliers" value="2">
               x2
             </label>
             <label class="multiplier__lbl" for="mult-3">
-              <input class="multiplier__check" type="checkbox" id="mult-3" name="multipliers" value="3">
+              <input class="multiplier__check" type="checkbox" id="mult-3" name="multipliers" value="3" checked>
               x3
             </label>
             <label class="multiplier__lbl" for="mult-4">

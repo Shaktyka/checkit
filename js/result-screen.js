@@ -6,7 +6,7 @@ const makeResultScreen = (results) => {
       <div class="result__block">
         <div class="result__text congratz">
           <h3 class="congratz__title">Отлично!</h3>
-          <p class="congratz__esprns">Твой результат: ${results.amount} примеров</p>
+          <p class="congratz__esprns">Просмотрено ${results.amount} примеров</p>
           <b class="congratz__slogan">${results.message}</b>
         </div>
       </div>

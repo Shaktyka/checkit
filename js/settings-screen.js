@@ -36,11 +36,11 @@ const makeSettingsScreen = () => {
               x2
             </label>
             <label class="multiplier__lbl" for="mult-3">
-              <input class="multiplier__check" type="checkbox" id="mult-3" name="multipliers" value="3" checked>
+              <input class="multiplier__check" type="checkbox" id="mult-3" name="multipliers" value="3">
               x3
             </label>
             <label class="multiplier__lbl" for="mult-4">
-              <input class="multiplier__check" type="checkbox" id="mult-4" name="multipliers" value="4">
+              <input class="multiplier__check" type="checkbox" id="mult-4" name="multipliers" value="4" checked>
               x4
             </label>
             <label class="multiplier__lbl" for="mult-5">

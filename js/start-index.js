@@ -34,6 +34,7 @@ const cleanState = {
   stage: null,
   settings: null,
   expressions: null,
+  resultMessage: 'Сыграем ещё?',
   errorGameMessage: '',
   currExprIndex: 0
 };
@@ -137,7 +138,7 @@ const changeProgressWidth = (index, amount) => {
   progressBar.style.width = `${100 * (index + 1) / amount}%`;
 };
 
-// Проверка правильности ответа 
+// Проверка правильности ответа
 const checkUserResponse = () => {
   const currentExpression = state.expressions[state.currExprIndex];
   const inputField = document.querySelector('.expr__res-field');
@@ -324,7 +325,9 @@ const renderNotDevScreen = () => {
 const renderResultScreen = () => {
   main.innerHTML = '';
   // Собрать результаты и передать ниже
-  const resultEl = renderElement(makeResultScreen());
+  results.amount = state.expressions.length;
+  results.message = compliments[[getRandomNumber(0, compliments.length - 1)]];
+  const resultEl = renderElement(makeResultScreen(results));
   render(main, resultEl);
   setState('stage', 'result');
   initResultScreen();

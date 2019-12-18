@@ -106,7 +106,7 @@ body {
   flex-direction: row-reverse;
   align-items: flex-start;
   margin-bottom: 40px;
-  padding: 50px 110px 30px 50px;
+  padding: 50px 90px 30px 50px;
 
   width: 870px;
   min-height: 400px;
@@ -124,13 +124,23 @@ body {
 }
 
 .result__text {
-  width: 270px;
-  padding: 30px;
+  width: 360px;
+  padding: 30px 20px;
   margin: 0;
   background-color: white;
   border-radius: 10px;
   line-height: 30px;
   text-align: center;
+}
+
+.congratz__title {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.congratz__esprns {
+  margin: 0;
+  margin-bottom: 30px;
 }
 
 .result__btns {

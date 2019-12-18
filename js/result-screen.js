@@ -1,10 +1,14 @@
 // Генерация экрана
-const makeResultScreen = (results, message = `Задание выполнено`) => {
+const makeResultScreen = (results) => {
   return `<section class="screen result">
-    <h2 class="screen__title result__title">Отлично!</h2>
+    <!-- <h2 class="screen__title result__title">Отлично!</h2> -->
     <div class="result__wrap">
       <div class="result__block">
-        <p class="result__text">${message}</p>
+        <div class="result__text congratz">
+          <h3 class="congratz__title">Отлично!</h3>
+          <p class="congratz__esprns">Твой результат: ${results.amount} примеров</p>
+          <b class="congratz__slogan">${results.message}</b>
+        </div>
       </div>
       <div class="result__btns">
         <button class="btn btn__act game__btn result__again-btn" type="button">

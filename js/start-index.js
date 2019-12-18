@@ -137,9 +137,8 @@ const changeProgressWidth = (index, amount) => {
   progressBar.style.width = `${100 * (index + 1) / amount}%`;
 };
 
-// Обработка ввода в поле ответа
-const gameFormSubmitHandler = (evt) => {
-  evt.preventDefault();
+// Проверка правильности ответа 
+const checkUserResponse = () => {
   const currentExpression = state.expressions[state.currExprIndex];
   const inputField = document.querySelector('.expr__res-field');
   const userResponse = Number(inputField.value);
@@ -156,10 +155,11 @@ const gameFormSubmitHandler = (evt) => {
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     };
-  if (!userResponse || userResponse < 0) {
-    respInput.classList.add('error');
-    toastr.error('Кажется, ты ввёл в поле что-то не то.');
-  } else {
+  // if (typeof(userResponse) !== 'number') {
+  //   console.log(typeof(userResponse));
+  //   respInput.classList.add('error');
+  //   toastr.error('Кажется, ты ввёл в поле что-то не то.');
+  // } else {
     // Проверяем ответ: если правильный, то разблокируем кнопку "Следующий"
     if (currentExpression.response === userResponse) {
       toastr.success('Правильно! Идём дальше');
@@ -171,7 +171,12 @@ const gameFormSubmitHandler = (evt) => {
       respInput.classList.add('error');
       toastr.warning('Ответ неверный. Попробуй ещё раз.');
     }
-  }
+};
+
+// Обработка ввода в поле ответа
+const gameFormSubmitHandler = (evt) => {
+  evt.preventDefault();
+  checkUserResponse();
 };
 
 // Рендерим след. элемент с примером
@@ -179,6 +184,9 @@ const renderExpression = () => {
    const newExpressEl = renderElement(makeExpressionEl(state.expressions[state.currExprIndex], state.settings.regime));
    expressionBlock.innerHTML = '';
    expressionBlock.appendChild(newExpressEl);
+   if (state.settings.regime === 'exam') {
+     nextBtn.disabled = 'disabled';
+   }
    respInput = document.querySelector('.expr__res-field');
    if (respInput) {
      respInput.focus();
@@ -215,7 +223,11 @@ const documentKeydownHandler = (evt) => {
       exitNotDevBtnClickHandler(); // Возвращаемся на экран настроек
     }
   } else if (state.stage === 'game') {
-    if (evt.keyCode === 39) {
+    if (state.settings.regime === 'exam') {
+      if (evt.keyCode === 39 || evt.keyCode === 13) {
+        checkUserResponse();
+      }
+    } else {
       showNextSlide(); // следующий пример
     }
   } else if (state.stage === 'result') {
@@ -232,9 +244,6 @@ const initGameScreen = () => {
   expressionBlock = document.querySelector('.game__expr');
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
-  if (state.settings.regime === 'exam') {
-    nextBtn.disabled = 'disabled';
-  }
   gameForm = gameComponent.querySelector('.game__form');
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);

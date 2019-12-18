@@ -34,9 +34,13 @@ const cleanState = {
   stage: null,
   settings: null,
   expressions: null,
-  resultMessage: 'Сыграем ещё?',
   errorGameMessage: '',
-  currExprIndex: 0
+  currExprIndex: 0,
+  results: {
+    message: '',
+    amount: '',
+    sets: null
+  }
 };
 
 // Объект примера
@@ -47,7 +51,7 @@ const expression = {
 };
 
 // Объект результата игры
-let results = {};
+// let results = {};
 
 // Генерация случайного числа от min до max включительно
 const getRandomNumber = (min, max) => min + Math.floor(Math.random() * (max + 1 - min));
@@ -325,9 +329,10 @@ const renderNotDevScreen = () => {
 const renderResultScreen = () => {
   main.innerHTML = '';
   // Собрать результаты и передать ниже
-  results.amount = state.expressions.length;
-  results.message = compliments[[getRandomNumber(0, compliments.length - 1)]];
-  const resultEl = renderElement(makeResultScreen(results));
+  state.results.amount = state.expressions.length;
+  state.results.message = compliments[[getRandomNumber(0, compliments.length - 1)]];
+  state.results.sets = state.settings.multipliers;
+  const resultEl = renderElement(makeResultScreen(state.results));
   render(main, resultEl);
   setState('stage', 'result');
   initResultScreen();

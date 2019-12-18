@@ -497,4 +497,12 @@ body {
   width: 230px;
   text-align: center;
   color: #002A54;
+  background-color: #bee0ff;
+  border-radius: 3px;
+  border: 3px solid #bee0ff;
+}
+
+.error {
+  background-color: #ffb6c161;
+  border: 3px solid red;
 }

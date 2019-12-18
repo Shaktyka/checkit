@@ -16,7 +16,7 @@ let multiplicator_2 = null;
 let mult_result = null;
 let expressionBlock = null;
 let progressBar = null;
-let resInput = null;
+let respInput = null;
 // Экран результатов
 let exitAgainBtn = null;
 let exitResultBtn = null;
@@ -140,7 +140,38 @@ const changeProgressWidth = (index, amount) => {
 // Обработка ввода в поле ответа
 const gameFormSubmitHandler = (evt) => {
   evt.preventDefault();
-  console.log(1);
+  const currentExpression = state.expressions[state.currExprIndex];
+  const inputField = document.querySelector('.expr__res-field');
+  const userResponse = Number(inputField.value);
+  // console.log(currentExpression, userResponse);
+  toastr.options = {
+      "newestOnTop": false,
+      "positionClass": "toast-bottom-center",
+      "preventDuplicates": true,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+  if (!userResponse || userResponse < 0) {
+    respInput.classList.add('error');
+    toastr.error('Кажется, ты ввёл в поле что-то не то.');
+  } else {
+    // Проверяем ответ: если правильный, то разблокируем кнопку "Следующий"
+    if (currentExpression.response === userResponse) {
+      toastr.success('Правильно! Идём дальше');
+      document.querySelector('.game-screen__next-btn').removeAttribute('disabled');
+      if (respInput.classList.contains('error')) {
+        respInput.classList.remove('error');
+      }
+    } else {
+      respInput.classList.add('error');
+      toastr.warning('Ответ неверный. Попробуй ещё раз.');
+    }
+  }
 };
 
 // Рендерим след. элемент с примером
@@ -148,10 +179,12 @@ const renderExpression = () => {
    const newExpressEl = renderElement(makeExpressionEl(state.expressions[state.currExprIndex], state.settings.regime));
    expressionBlock.innerHTML = '';
    expressionBlock.appendChild(newExpressEl);
-   const respInput = document.querySelector('.expr__res-field');
+   respInput = document.querySelector('.expr__res-field');
    if (respInput) {
      respInput.focus();
    }
+   multiplicator_1 = document.querySelector('.expr__mult-1');
+   multiplicator_2 = document.querySelector('.expr__mult-2');
    changeProgressWidth(state.currExprIndex, state.expressions.length);
 };
 

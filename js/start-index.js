@@ -199,6 +199,9 @@ const initGameScreen = () => {
   expressionBlock = document.querySelector('.game__expr');
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
+  if (state.settings.regime === 'exam') {
+    nextBtn.disabled = 'disabled';
+  }
   gameForm = gameComponent.querySelector('.game__form');
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);

@@ -330,6 +330,10 @@ body {
   background-color: #248de7;
 }
 
+.game-screen__next-btn:disabled {
+  background-color: gray;
+}
+
 /* Экран настроек */
 
 .settings {

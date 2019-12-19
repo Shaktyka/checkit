@@ -79,6 +79,42 @@ body {
   background-size: contain;
 }
 
+.page__content {
+  position: relative;
+  /*width: fit-content;
+  margin: 0 auto;
+  background-image: url('../img/hero_1.png'), url('../img/hero_2.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 100%, 0 101%;
+  background-size: 266px, 233px;*/
+}
+
+.page__content::before,
+.page__content::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  width: 266px;
+  height: 289px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.page__content::before {
+  left: 13%;
+  width: 233px;
+  background-image: url('../img/hero_2.png');
+  background-size: contain;
+}
+
+.page__content::after {
+  right: 10%;
+  bottom: -3%;
+  height: 255px;
+  background-image: url('../img/hero_1.png');
+  background-size: contain;
+}
+
 .screen {
   /* */
 }

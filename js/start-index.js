@@ -1,5 +1,5 @@
 // Элементы
-const main = document.querySelector('.page__main');
+const main = document.querySelector('.page__content');
 let settingsComponent = null; // компонент настроек
 let gameComponent = null; // компонент игры
 let resultComponent = null; // компонент результатов

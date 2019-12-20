@@ -593,16 +593,6 @@ body {
   border: 3px solid #bee0ff;
 }
 
-.error {
-  background-color: #ffb6c161;
-  border: 3px solid red;
-}
-
-.true {
-  background-color: #0080003b;
-  border: 3px solid #008000;
-}
-
 /* Пифарогская таблица */
 
 .btn__pifagor {
@@ -620,12 +610,10 @@ body {
   width: 800px;
   margin: 0 auto;
   padding-top: 20px;
-  border: 1px solid red;
 }
 
 .table {
   width: auto;
-  border: 1px solid gray;
   border-collapse: collapse;
 }
 
@@ -636,6 +624,7 @@ body {
 }
 
 .table__td {
+  padding: 0;
   border: 1px solid lightgray;
 }
 
@@ -645,4 +634,43 @@ body {
   align-items: center;
   border: none;
   font-weight: 700;
+}
+
+.table__field {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  font-size: 26px;
+  border: none;
+}
+
+/* Отключаем стрелки в полях с типом number */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Всегда последними */
+
+.error {
+  background-color: #ffb6c161;
+  border: 3px solid red;
+}
+
+.true {
+  background-color: #0080003b;
+  border: 3px solid #008000;
+}
+
+.error--piph {
+  background-color: #f44336;
+  border: none;
 }

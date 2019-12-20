@@ -588,7 +588,7 @@ body {
   width: 230px;
   text-align: center;
   color: #002A54;
-  background-color: #bee0ff;
+  background-color: #bee0ff69;
   border-radius: 3px;
   border: 3px solid #bee0ff;
 }
@@ -596,4 +596,53 @@ body {
 .error {
   background-color: #ffb6c161;
   border: 3px solid red;
+}
+
+.true {
+  background-color: #0080003b;
+  border: 3px solid #008000;
+}
+
+/* Пифарогская таблица */
+
+.btn__pifagor {
+  background-color: transparent;
+  border: none;
+  color: #145595;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.piphagor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border: 1px solid red;
+}
+
+.table {
+  width: auto;
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
+
+.table__td,
+.table__th {
+  width: 60px;
+  height: 60px;
+}
+
+.table__td {
+  border: 1px solid lightgray;
+}
+
+.table__td--num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-weight: 700;
 }

@@ -615,6 +615,7 @@ body {
 .table {
   width: auto;
   border-collapse: collapse;
+  margin-bottom: 30px;
 }
 
 .table__td,
@@ -646,6 +647,10 @@ body {
   border: none;
 }
 
+.table__field:focus {
+  border: 1px solid lightblue;
+}
+
 /* Отключаем стрелки в полях с типом number */
 input[type="number"] {
   appearance: textfield;
@@ -656,6 +661,21 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   appearance: none;
   -webkit-appearance: none;
+}
+
+.piphagor__reset-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.piphagor__reset-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid #BEE0FF;
+  border-radius: 24px;
+  color: #BEE0FF;
+  opacity: 0.7;
 }
 
 /* Всегда последними */
@@ -673,4 +693,8 @@ input::-webkit-inner-spin-button {
 .error--piph {
   background-color: #f44336;
   border: none;
+}
+
+.true--piph {
+  background-color: #009688;
 }

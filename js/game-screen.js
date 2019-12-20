@@ -16,6 +16,16 @@ const makeGameScreen = (errorMessage = false) => {
           </div>
           <p class="game__expr-text v-hidden">Пять на пять — двадцать пять</p>
         </form>
+        <div class="game__results v-hidden">
+          <p class="game__results-wrap result-el result-el--false">
+            <span class="result-el__plate">0</span>
+            неверно
+          </p>
+          <p class="game__results-wrap result-el result-el--true">
+            <span class="result-el__plate">0</span>
+            верно
+          </p>
+        </div>
       </div>
       <div class="game-screen__btns">
         <button class="btn btn__act game__btn game-screen__exit-btn" type="button">

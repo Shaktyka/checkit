@@ -89,7 +89,7 @@ body {
   background-size: 266px, 233px;*/
 }
 
-.page__content::before,
+/*.page__content::before,
 .page__content::after {
   position: absolute;
   content: "";
@@ -113,7 +113,7 @@ body {
   height: 255px;
   background-image: url('../img/hero_1.png');
   background-size: contain;
-}
+}*/
 
 .screen {
   /* */
@@ -161,7 +161,7 @@ body {
 
 .result__text {
   width: 360px;
-  padding: 30px 20px;
+  padding: 30px 20px 40px;
   margin: 0;
   background-color: white;
   border-radius: 10px;
@@ -281,13 +281,17 @@ body {
 }
 
 .game__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 870px;
   min-height: 300px;
   background-color: #ffffff;
   border-radius: 26px;
   color: #002A54;
   margin-bottom: 30px;
-  padding: 70px 30px 80px;
+  /*padding: 70px 30px 80px;*/
+  padding: 60px 10px 10px;
 }
 
 .game__progress-wrap {
@@ -378,6 +382,47 @@ body {
 
 .game-screen__next-btn:disabled {
   background-color: gray;
+}
+
+/* Счётчики ответов */
+
+.game__results {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.result-el {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.result-el__plate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+}
+
+.result-el--false .result-el__plate {
+  margin-right: 10px;
+  background-color: brown;
+}
+
+.result-el--true {
+  flex-direction: row-reverse;
+}
+
+.result-el--true .result-el__plate {
+  margin-left: 10px;
+  background-color: green;
 }
 
 /* Экран настроек */

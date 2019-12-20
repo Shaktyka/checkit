@@ -7,6 +7,7 @@ let notDevComponent =  null;
 let settingsForm = null; // форма настроек
 let selectAllBtn = null;
 let multiplicators = null;
+
 // Экран игры
 let exitBtn = null;
 let nextBtn = null;
@@ -17,6 +18,8 @@ let mult_result = null;
 let expressionBlock = null;
 let progressBar = null;
 let respInput = null;
+let countersBlock = null;
+
 // Экран результатов
 let exitAgainBtn = null;
 let exitResultBtn = null;
@@ -146,36 +149,36 @@ const changeProgressWidth = (index, amount) => {
 const checkUserResponse = () => {
   const currentExpression = state.expressions[state.currExprIndex];
   const inputField = document.querySelector('.expr__res-field');
-  const userResponse = Number(inputField.value);
-  // console.log(currentExpression, userResponse);
+  const userResponse = inputField.value;
+  // console.log(userResponse);
   toastr.options = {
-      "newestOnTop": false,
-      "positionClass": "toast-bottom-center",
-      "preventDuplicates": true,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    };
-  // if (typeof(userResponse) !== 'number') {
-  //   console.log(typeof(userResponse));
-  //   respInput.classList.add('error');
-  //   toastr.error('Кажется, ты ввёл в поле что-то не то.');
-  // } else {
+    "newestOnTop": false,
+    "positionClass": "toast-bottom-center",
+    "preventDuplicates": true,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+  if (userResponse.length === 0) {
+    respInput.classList.add('error');
+    toastr.warning(`Поле пустое,  проверить нечего :(`);
+  } else {
     // Проверяем ответ: если правильный, то разблокируем кнопку "Следующий"
-    if (currentExpression.response === userResponse) {
+    if (currentExpression.response === Number(userResponse)) {
+      respInput.classList.add('true');
       toastr.success('Правильно! Идём дальше');
-      document.querySelector('.game-screen__next-btn').removeAttribute('disabled');
       if (respInput.classList.contains('error')) {
         respInput.classList.remove('error');
       }
     } else {
       respInput.classList.add('error');
-      toastr.warning('Ответ неверный. Попробуй ещё раз.');
+      toastr.error('Ответ неверный. Попробуй ещё раз.');
     }
+  }
 };
 
 // Обработка ввода в поле ответа
@@ -190,7 +193,7 @@ const renderExpression = () => {
    expressionBlock.innerHTML = '';
    expressionBlock.appendChild(newExpressEl);
    if (state.settings.regime === 'exam') {
-     nextBtn.disabled = 'disabled';
+     nextBtn.remove();
    }
    respInput = document.querySelector('.expr__res-field');
    if (respInput) {
@@ -229,7 +232,7 @@ const documentKeydownHandler = (evt) => {
     }
   } else if (state.stage === 'game') {
     if (state.settings.regime === 'exam') {
-      if (evt.keyCode === 39 || evt.keyCode === 13) {
+      if (evt.keyCode === 39) {
         checkUserResponse();
       }
     } else {
@@ -250,6 +253,11 @@ const initGameScreen = () => {
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
   gameForm = gameComponent.querySelector('.game__form');
+
+  if (state.settings.regime === 'exam') {
+    gameComponent.querySelector('.game__counters').classList.remove('v-hidden');
+  }
+
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);
   nextBtn.addEventListener('click', nextBtnClickHandler);

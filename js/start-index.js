@@ -7,6 +7,7 @@ let notDevComponent =  null;
 let settingsForm = null; // форма настроек
 let selectAllBtn = null;
 let multiplicators = null;
+
 // Экран игры
 let exitBtn = null;
 let nextBtn = null;
@@ -17,6 +18,8 @@ let mult_result = null;
 let expressionBlock = null;
 let progressBar = null;
 let respInput = null;
+let countersBlock = null;
+
 // Экран результатов
 let exitAgainBtn = null;
 let exitResultBtn = null;
@@ -250,6 +253,11 @@ const initGameScreen = () => {
   exitBtn = gameComponent.querySelector('.game-screen__exit-btn');
   nextBtn = gameComponent.querySelector('.game-screen__next-btn');
   gameForm = gameComponent.querySelector('.game__form');
+
+  if (state.settings.regime === 'exam') {
+    gameComponent.querySelector('.game__counters').classList.remove('v-hidden');
+  }
+
   // Обработчики
   exitBtn.addEventListener('click', exitBtnClickHandler);
   nextBtn.addEventListener('click', nextBtnClickHandler);

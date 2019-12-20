@@ -386,14 +386,14 @@ body {
 
 /* Счётчики ответов */
 
-.game__results {
+.game__counters {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 35px;
 }
 
-.result-el {
+.counter {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -401,7 +401,7 @@ body {
   padding: 0;
 }
 
-.result-el__plate {
+.counter__plate {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -411,16 +411,16 @@ body {
   color: white;
 }
 
-.result-el--false .result-el__plate {
+.counter--false .counter__plate {
   margin-right: 10px;
   background-color: brown;
 }
 
-.result-el--true {
+.counter--true {
   flex-direction: row-reverse;
 }
 
-.result-el--true .result-el__plate {
+.counter--true .counter__plate {
   margin-left: 10px;
   background-color: green;
 }

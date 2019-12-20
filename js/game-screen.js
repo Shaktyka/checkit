@@ -16,13 +16,13 @@ const makeGameScreen = (errorMessage = false) => {
           </div>
           <p class="game__expr-text v-hidden">Пять на пять — двадцать пять</p>
         </form>
-        <div class="game__results v-hidden">
-          <p class="game__results-wrap result-el result-el--false">
-            <span class="result-el__plate">0</span>
+        <div class="game__counters v-hidden">
+          <p class="game__counters-wrap counter counter--false">
+            <span class="counter__plate">0</span>
             неверно
           </p>
-          <p class="game__results-wrap result-el result-el--true">
-            <span class="result-el__plate">0</span>
+          <p class="game__counters-wrap counter counter--true">
+            <span class="counter__plate">0</span>
             верно
           </p>
         </div>

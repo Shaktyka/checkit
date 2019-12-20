@@ -89,7 +89,7 @@ body {
   background-size: 266px, 233px;*/
 }
 
-.page__content::before,
+/*.page__content::before,
 .page__content::after {
   position: absolute;
   content: "";
@@ -113,7 +113,7 @@ body {
   height: 255px;
   background-image: url('../img/hero_1.png');
   background-size: contain;
-}
+}*/
 
 .screen {
   /* */

@@ -4,10 +4,10 @@ const inputs = form.querySelectorAll('.table__field');
 const firstInput = form.querySelector('.table__field');
 const resetBtn = form.querySelector('.piphagor__reset-btn');
 
-// + Валидацию значений
-// Добавить проверку значений + навешиваем классы
 // Добавить переход по Enter на следующий элемент (или стрелочками)
 // + генерацию таблицы 
+// Добавить переходы по неправильным ответам и пустым ячейкам
+// Добавить проверку (при каждом прав-ном вводе) на все прав-ные ответы в таблице, чтобы показывать модалку с поздр-нием
 
 // Генерация случайного числа от min до max включительно
 const getRandomNumber = (min, max) => min + Math.floor(Math.random() * (max + 1 - min));
@@ -17,7 +17,6 @@ const tableChangeEventListener = (evt) => {
   evt.preventDefault();
   const clickedInput = evt.target;
   if (clickedInput.classList.contains('table__field')) {
-    console.log(clickedInput.value);
     const resp = Number(clickedInput.value);
 
     toastr.options = {
@@ -52,7 +51,60 @@ const tableChangeEventListener = (evt) => {
   }
 };
 
-table.addEventListener('change', tableChangeEventListener);
+// Проверяем клики внутри формы
+// const tableClickEventListener = (evt) => {
+//   const clickedEl = evt.target;
+//   if (!clickedEl.classList.contains(`table__field`)) {
+//     return;
+//   }
+//   console.log(clickedEl);
+// };
+
+// Обработчик нажатий клавиш
+const tableKeydownEventListener = (evt) => {
+  let field = null;
+  let response = null;
+
+  if (evt.code === `Enter`) {
+    field = evt.target;
+    response = Number(field.value);
+  } else {
+    return;
+  }
+
+  toastr.options = {
+    "newestOnTop": false,
+    "positionClass": "toast-bottom-center",
+    "preventDuplicates": true,
+    "showDuration": "300",
+    "hideDuration": "500",
+    "timeOut": "1500",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  };
+
+  // Получаем данные инпута
+  const row = field.dataset.row;
+  const col = field.dataset.col;
+  const multiplication = Number(row) * Number(col);
+    
+  // Проверяем ответ и произведение данных
+  if (response === multiplication) {
+    field.classList.remove('error--piph');
+    field.classList.add('right');
+    const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
+    toastr.success(compl);
+  } else {
+    field.classList.add('error--piph');
+    const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
+    toastr.error(error_mess);
+  }
+};
+
+// table.addEventListener('change', tableChangeEventListener); // ненужный метод, убрать потом
+table.addEventListener('keydown', tableKeydownEventListener);
 
 // Обработчик отправки формы
 const formSubmitEventListener = (evt) => {

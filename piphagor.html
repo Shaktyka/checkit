@@ -2,21 +2,21 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Таблица Пифагора</title>
-    <link rel="stylesheet" href="./css/start-style.css">
-    <link rel="stylesheet" href="./css/toastr.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=cyrillic" rel="stylesheet">
-    <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
+  <meta charset="UTF-8">
+  <title>Таблица Пифагора</title>
+  <link rel="stylesheet" href="./css/start-style.css">
+  <link rel="stylesheet" href="./css/toastr.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/png">
 </head>
 
 <body>
-    <main class="page">
-        <section class="piphagor">
-            <h1 class="piphagor__title">Таблица Пифагора</h1>
-            <p class="piphagor__text">Заполни все клеточки правильными ответами</p>
-            <form class="piphagor__form" action="#" autocomplete="off">
-                <table class="piphagor__table table">
+  <main class="page">
+    <section class="piphagor">
+      <h1 class="piphagor__title">Таблица Пифагора</h1>
+      <p class="piphagor__text">Заполни все клеточки правильными ответами</p>
+      <form class="piphagor__form" action="#" autocomplete="off">
+        <table class="piphagor__table table">
                     <tr class="table__row">
                         <th class="table__th"></th>
                         <th class="table__th" data-value="1">1</th>
@@ -360,32 +360,32 @@
                             <input class="table__field" type="number" name="result" data-row="10" data-col="10" value="">
                         </td>
                     </tr>
-                </table>
-                <div class="piphagor__reset-wrap">
-                    <a class="btn piphagor__back" href="index.html">Назад</a>
-                    <input class="btn btn--reset piphagor__reset-btn" type="reset" value="Очистить">
-                </div>
-            </form>
-            <!-- Модалка с поздравлением -->
-            <section class="modal all-success">
-              <div class="all-success__wrap">
-                <button class="all-success__close" type="button">&#10008;</button>
-                <h1 class="all-success__title">Отличный результат!</h1>
-                <p class="all-success__text">
-                  Поздравляю! <br>Вся таблица заполнена правильно. <br>Хочешь сыграть ещё?
-                </p>
-                <button class="btn all-success__again" type="button">Да!</button>
-              </div>
-            </section>
-        </section>
-    </main>
-    <!-- СКРИПТЫ служебные -->
-    <script src="./js/jquery-3.4.1.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/toastr.min.js"></script>
-    <script src="./js/data.js"></script>
-    <script src="./js/piphagor.js"></script>
-    <script src="./js/modal.js"></script>
+        </table>
+        <div class="piphagor__reset-wrap">
+            <a class="btn piphagor__back" href="index.html">Назад</a>
+            <input class="btn btn--reset piphagor__reset-btn" type="reset" value="Очистить">
+        </div>
+      </form>
+      <!-- Модалка с поздравлением -->
+      <section class="modal all-success">
+        <div class="all-success__wrap">
+          <button class="all-success__close" type="button">&#10008;</button>
+          <h1 class="all-success__title">Отличный результат!</h1>
+          <p class="all-success__text">
+            Поздравляю! <br>Вся таблица заполнена правильно. <br>Хочешь сыграть ещё?
+          </p>
+          <button class="btn all-success__again" type="button">Да!</button>
+        </div>
+      </section>
+    </section>
+  </main>
+  <!-- СКРИПТЫ служебные -->
+  <script src="./js/jquery-3.4.1.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/toastr.min.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/piphagor.js"></script>
+  <script src="./js/modal.js"></script>
 </body>
 
 </html>

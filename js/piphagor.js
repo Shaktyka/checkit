@@ -17,6 +17,7 @@ const tableChangeEventListener = (evt) => {
   evt.preventDefault();
   const clickedInput = evt.target;
   if (clickedInput.classList.contains('table__field')) {
+    console.log(clickedInput.value);
     const resp = Number(clickedInput.value);
 
     toastr.options = {
@@ -39,8 +40,8 @@ const tableChangeEventListener = (evt) => {
     
     // Проверяем ответ и произведение данных
     if (resp === multiplication) {
-      // clickedInput.classList.add('true--piph');
       clickedInput.classList.remove('error--piph');
+      clickedInput.classList.add('right');
       const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
       toastr.success(compl);
     } else {
@@ -65,6 +66,8 @@ const resetBtnClickEventListener = (evt) => {
   inputs.forEach((it) => {
     if (it.classList.contains('error--piph')) {
       it.classList.remove('error--piph');
+    } else if (it.classList.contains('right')) {
+      it.classList.remove('right');
     }
   });
 };

@@ -810,3 +810,7 @@ input::-webkit-inner-spin-button {
 .modal__show {
   display: block;
 }
+
+.right {
+  color: lightgreen;
+}

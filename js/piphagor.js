@@ -9,6 +9,9 @@ const resetBtn = form.querySelector('.piphagor__reset-btn');
 // Добавить переход по Enter на следующий элемент (или стрелочками)
 // + генерацию таблицы 
 
+// Генерация случайного числа от min до max включительно
+const getRandomNumber = (min, max) => min + Math.floor(Math.random() * (max + 1 - min));
+
 // Обработчик изменения значений в таблице 
 const tableChangeEventListener = (evt) => {
   evt.preventDefault();
@@ -21,8 +24,8 @@ const tableChangeEventListener = (evt) => {
       "positionClass": "toast-bottom-center",
       "preventDuplicates": true,
       "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
+      "hideDuration": "500",
+      "timeOut": "1500",
       "showEasing": "swing",
       "hideEasing": "linear",
       "showMethod": "fadeIn",
@@ -38,9 +41,12 @@ const tableChangeEventListener = (evt) => {
     if (resp === multiplication) {
       // clickedInput.classList.add('true--piph');
       clickedInput.classList.remove('error--piph');
-      toastr.success(`Умничка!`);
+      const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
+      toastr.success(compl);
     } else {
       clickedInput.classList.add('error--piph');
+      const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
+      toastr.error(error_mess);
     }
   }
 };

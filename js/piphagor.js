@@ -51,14 +51,18 @@ const tableChangeEventListener = (evt) => {
   }
 };
 
-// Проверяем клики внутри формы
-// const tableClickEventListener = (evt) => {
-//   const clickedEl = evt.target;
-//   if (!clickedEl.classList.contains(`table__field`)) {
-//     return;
-//   }
-//   console.log(clickedEl);
-// };
+// Переход к следующей ячейке
+const focusNextField = () => {
+  const emptyField = table.querySelector(`.table__field:not(.right)`);
+  const redField = table.querySelector(`.error--piph`);
+  if (emptyField) {
+    emptyField.focus();
+  } else if (redField) {
+    redField.focus();
+  } else {
+    table.querySelector(`.right`).focus();
+  }
+};
 
 // Обработчик нажатий клавиш
 const tableKeydownEventListener = (evt) => {
@@ -68,6 +72,10 @@ const tableKeydownEventListener = (evt) => {
   if (evt.code === `Enter`) {
     field = evt.target;
     response = Number(field.value);
+    if (field.classList.contains(`right`)) {
+      focusNextField();
+      return;
+    }
   } else {
     return;
   }
@@ -96,8 +104,10 @@ const tableKeydownEventListener = (evt) => {
     field.classList.add('right');
     const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
     toastr.success(compl);
+    focusNextField();
   } else {
     field.classList.add('error--piph');
+    field.classList.remove('right');
     const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
     toastr.error(error_mess);
   }

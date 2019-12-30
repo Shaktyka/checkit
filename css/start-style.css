@@ -712,6 +712,80 @@ input::-webkit-inner-spin-button {
   background-color: transparent;
 }
 
+/* МОДАЛКА */
+
+.modal {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  width: 500px;
+  height: auto;
+  background-color: #fff;
+  color: #002A54;
+  border-radius: 5px;
+  box-shadow: 0px 1px 30px 2px rgba(0, 0, 0, 0.3);
+}
+
+.all-success {
+  background-image: url('../img/magic-frozen.png'), url('../img/magic-frozen.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: 129% 19px, -41px 19px;
+  background-size: contain, contain;
+}
+
+.all-success__wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all-success__close {
+  position: absolute;
+  top: -13px;
+  right: -12px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.all-success__title {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.all-success__text {
+  margin: 0;
+  margin-bottom: 40px;
+  width: 80%;
+  text-align: center;
+}
+
+.all-success__again {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #2667a7;
+  border: 2px solid #BEE0FF;
+  border-radius: 24px;
+  font-size: 16px;
+  color: #BEE0FF;
+  font-weight: 400;
+}
+
+.all-success__again:hover {
+  background-color: #BEE0FF;
+  border: 2px solid #2667a7;
+  color: #2667a7;
+}
+
 /* Всегда последними */
 
 .error {
@@ -731,4 +805,8 @@ input::-webkit-inner-spin-button {
 
 .true--piph {
   background-color: #009688;
+}
+
+.modal__show {
+  display: block;
 }

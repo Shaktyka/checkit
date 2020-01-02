@@ -10,7 +10,24 @@ const resetBtn = form.querySelector(`.piphagor__reset-btn`);
 // Генерация случайного числа от min до max включительно
 const getRandomNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max + 1 - min))
- };
+};
+
+// Генератор тостеров
+const showToastr = (text, event = `success`) => {
+  toastr.options = {
+    'newestOnTop': false,
+    'positionClass': 'toast-bottom-center',
+    'preventDuplicates': true,
+    'showDuration': '300',
+    'hideDuration': '500',
+    'timeOut': '1500',
+    'showEasing': 'swing',
+    'hideEasing': 'linear',
+    'showMethod': 'fadeIn',
+    'hideMethod': 'fadeOut'
+  };
+  toastr[event](text);
+};
 
 // Обработчик изменения значений в таблице
 const tableChangeEventListener = (evt) => {
@@ -18,19 +35,6 @@ const tableChangeEventListener = (evt) => {
   const clickedInput = evt.target;
   if (clickedInput.classList.contains(`table__field`)) {
     const resp = Number(clickedInput.value);
-
-    toastr.options = {
-      'newestOnTop': false,
-      'positionClass': 'toast-bottom-center',
-      'preventDuplicates': true,
-      'showDuration': '300',
-      'hideDuration': '500',
-      'timeOut': '1500',
-      'showEasing': 'swing',
-      'hideEasing': 'linear',
-      'showMethod': 'fadeIn',
-      'hideMethod': 'fadeOut'
-    };
 
     // Получаем данные инпута
     const row = clickedInput.dataset.row;
@@ -42,11 +46,13 @@ const tableChangeEventListener = (evt) => {
       clickedInput.classList.remove(`error--piph`);
       clickedInput.classList.add(`right`);
       const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
-      toastr.success(compl);
+      // toastr.success(compl);
+      showToastr(compl);
     } else {
       clickedInput.classList.add(`error--piph`);
       const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
-      toastr.error(error_mess);
+      showToastr(error_mess, `error`);
+      // toastr.error(error_mess);
     }
   }
 };
@@ -80,19 +86,6 @@ const tableKeydownEventListener = (evt) => {
     return;
   }
 
-  toastr.options = {
-    "newestOnTop": false,
-    "positionClass": "toast-bottom-center",
-    "preventDuplicates": true,
-    "showDuration": "300",
-    "hideDuration": "500",
-    "timeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  };
-
   // Получаем данные инпута
   const row = field.dataset.row;
   const col = field.dataset.col;
@@ -103,13 +96,15 @@ const tableKeydownEventListener = (evt) => {
     field.classList.remove(`error--piph`);
     field.classList.add(`right`);
     const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
-    toastr.success(compl);
+    // toastr.success(compl);
+    showToastr(compl);
     focusNextField();
   } else {
     field.classList.add(`error--piph`);
     field.classList.remove(`right`);
     const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
-    toastr.error(error_mess);
+    // toastr.error(error_mess);
+    showToastr(error_mess, `error`);
   }
 };
 

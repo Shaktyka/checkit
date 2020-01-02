@@ -2,6 +2,9 @@ const form = document.querySelector(`.piphagor__form`);
 const table = form.querySelector(`.table`);
 const resetBtn = form.querySelector(`.piphagor__reset-btn`);
 
+let selectedRowMultCell = null;
+let selectedColMultCell = null;
+
 // Добавить переход стрелочками на следующий элемент
 // Добавить переходы по неправильным ответам и пустым ячейкам
 // Добавить проверку (при каждом прав-ном вводе) на все прав-ные ответы в таблице, чтобы показывать модалку с поздр-нием
@@ -45,13 +48,11 @@ const tableChangeEventListener = (evt) => {
       clickedInput.classList.remove(`error--piph`);
       clickedInput.classList.add(`right`);
       const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
-      // toastr.success(compl);
       showToastr(compl);
     } else {
       clickedInput.classList.add(`error--piph`);
       const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
       showToastr(error_mess, `error`);
-      // toastr.error(error_mess);
     }
   }
 };
@@ -62,10 +63,13 @@ const focusNextField = () => {
   const redField = table.querySelector(`.error--piph`);
   if (emptyField) {
     emptyField.focus();
+    // focusCells(emptyField);
   } else if (redField) {
     redField.focus();
+    // focusCells(redField);
   } else {
     table.querySelector(`.right`).focus();
+    // focusCells(table.querySelector(`.right`));
   }
 };
 
@@ -95,19 +99,23 @@ const tableKeydownEventListener = (evt) => {
     field.classList.remove(`error--piph`);
     field.classList.add(`right`);
     const compl = compliment_words[[getRandomNumber(0, compliment_words.length - 1)]];
-    // toastr.success(compl);
     showToastr(compl);
     focusNextField();
   } else {
     field.classList.add(`error--piph`);
     field.classList.remove(`right`);
     const error_mess = error_messages[[getRandomNumber(0, error_messages.length - 1)]];
-    // toastr.error(error_mess);
     showToastr(error_mess, `error`);
   }
 };
 
-// table.addEventListener('change', tableChangeEventListener); // ненужный метод, убрать потом
+// Обработчик фокуса на форму
+const tableFocusHandler = (evt) => {
+  console.log(evt.target);
+  focusCells(evt.target);
+};
+
+table.addEventListener(`focus`, tableFocusHandler, true);
 table.addEventListener(`keydown`, tableKeydownEventListener);
 
 // Обработчик отправки формы
@@ -132,11 +140,35 @@ const resetBtnClickEventListener = (evt) => {
 form.addEventListener(`submit`, formSubmitEventListener);
 resetBtn.addEventListener(`click`, resetBtnClickEventListener);
 
+// Курсор в ячейку и подсветка множителей
+const focusCells = (el) => {
+  // Находим номера ряда и ячейки
+  const rowNum = el.dataset.row;
+  const colNum = el.dataset.col;
+  // Находим в таблице ячейки с этими числами
+  const rowMultCell = table.querySelector(`tr[data-row="${rowNum}"]`).querySelector(`.table__td--num`);
+  const colMultCell = table.querySelector(`th[data-value="${colNum}"]`);
+  // Меняем у них цвет фона
+  rowMultCell.style.backgroundColor = `#0c4a88`;
+  colMultCell.style.backgroundColor = `#0c4a88`;
+  // Сбрасываем подсветку с ранее подсвеченных ячеек
+  if (selectedRowMultCell) {
+    selectedRowMultCell.style.backgroundColor = `transparent`;
+  }
+  if (selectedColMultCell) {
+    selectedColMultCell.style.backgroundColor = `transparent`;
+  }
+  // Сохраняем подсвеченные ячейки в переменные
+  selectedRowMultCell = rowMultCell;
+  selectedColMultCell = colMultCell;
+  el.focus();
+};
+
 // Инициализация таблицы
 const initTable = () => {
   generateTable();
-  const firstInput = form.querySelector('.table__field');
-  firstInput.focus();
+  // focusCells(form.querySelector('.table__field'));
+  form.querySelector('.table__field').focus();
 };
 
 initTable();

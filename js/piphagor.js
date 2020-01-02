@@ -133,9 +133,25 @@ const resetBtnClickEventListener = (evt) => {
 form.addEventListener(`submit`, formSubmitEventListener);
 resetBtn.addEventListener(`click`, resetBtnClickEventListener);
 
+// ---------------- Генерация таблицы ----------------------------
+
+// Генерирует пустой ряд таблицы
+const createRowEl = (rowNum) => {
+  const row = document.createElement(`tr`);
+  row.classList.add(`table__row`);
+  if (rowNum !== 0) {
+    row.setAttribute(`data-row`, rowNum);
+  }
+  return row;
+};
+
 // Генерация таблицы
 const generateTable = (cols = 10, rows = 10) => {
   table.innerHTML = ``;
+  for (let i = 0; i <= rows; i++) {
+    const row = createRowEl(i);
+    table.append(row);
+  }
 };
 
 // Инициализация таблицы

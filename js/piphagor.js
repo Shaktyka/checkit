@@ -145,11 +145,39 @@ const createRowEl = (rowNum) => {
   return row;
 };
 
+// Генерирует ячейку TH
+const createTH = (colNum) => {
+  const th = document.createElement(`th`);
+  th.classList.add(`table__th`);
+  if (colNum !== 0) {
+    th.setAttribute(`data-value`, colNum);
+  }
+  th.innerHTML = colNum;
+  return th;
+};
+
+// Генерация ячеек TH
+const generateTHs = (cols) => {
+  const fragment = new DocumentFragment();
+  for (let i = 0; i <= cols; i++) {
+    const th = createTH(i);
+    fragment.append(th);
+  }
+  return fragment;
+};
+
 // Генерация таблицы
 const generateTable = (cols = 10, rows = 10) => {
   table.innerHTML = ``;
   for (let i = 0; i <= rows; i++) {
     const row = createRowEl(i);
+    let tdFragment = null;
+    if (i === 0) {
+      tdFragment = generateTHs(cols); // фрагмент
+    } else {
+      // генерируем ячейки с инпутами
+    }
+    row.append(tdFragment);
     table.append(row);
   }
 };

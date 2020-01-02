@@ -63,13 +63,10 @@ const focusNextField = () => {
   const redField = table.querySelector(`.error--piph`);
   if (emptyField) {
     emptyField.focus();
-    // focusCells(emptyField);
   } else if (redField) {
     redField.focus();
-    // focusCells(redField);
   } else {
     table.querySelector(`.right`).focus();
-    // focusCells(table.querySelector(`.right`));
   }
 };
 
@@ -111,7 +108,6 @@ const tableKeydownEventListener = (evt) => {
 
 // Обработчик фокуса на форму
 const tableFocusHandler = (evt) => {
-  console.log(evt.target);
   focusCells(evt.target);
 };
 
@@ -145,19 +141,15 @@ const focusCells = (el) => {
   // Находим номера ряда и ячейки
   const rowNum = el.dataset.row;
   const colNum = el.dataset.col;
+  // Сбрасываем подсветку с ранее подсвеченных ячеек
+  selectedRowMultCell.style.backgroundColor = `transparent`;
+  selectedColMultCell.style.backgroundColor = `transparent`;
   // Находим в таблице ячейки с этими числами
   const rowMultCell = table.querySelector(`tr[data-row="${rowNum}"]`).querySelector(`.table__td--num`);
   const colMultCell = table.querySelector(`th[data-value="${colNum}"]`);
   // Меняем у них цвет фона
   rowMultCell.style.backgroundColor = `#0c4a88`;
   colMultCell.style.backgroundColor = `#0c4a88`;
-  // Сбрасываем подсветку с ранее подсвеченных ячеек
-  if (selectedRowMultCell) {
-    selectedRowMultCell.style.backgroundColor = `transparent`;
-  }
-  if (selectedColMultCell) {
-    selectedColMultCell.style.backgroundColor = `transparent`;
-  }
   // Сохраняем подсвеченные ячейки в переменные
   selectedRowMultCell = rowMultCell;
   selectedColMultCell = colMultCell;
@@ -167,7 +159,8 @@ const focusCells = (el) => {
 // Инициализация таблицы
 const initTable = () => {
   generateTable();
-  // focusCells(form.querySelector('.table__field'));
+  selectedRowMultCell = table.querySelector(`tr[data-row="1"]`).querySelector(`.table__td--num`);
+  selectedColMultCell = table.querySelector(`th[data-value="1"]`);
   form.querySelector('.table__field').focus();
 };
 

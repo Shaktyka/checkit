@@ -3,7 +3,6 @@ const table = form.querySelector(`.table`);
 const resetBtn = form.querySelector(`.piphagor__reset-btn`);
 
 // Добавить переход стрелочками на следующий элемент
-// + генерацию таблицы
 // Добавить переходы по неправильным ответам и пустым ячейкам
 // Добавить проверку (при каждом прав-ном вводе) на все прав-ные ответы в таблице, чтобы показывать модалку с поздр-нием
 
@@ -16,7 +15,7 @@ const getRandomNumber = (min, max) => {
 const showToastr = (text, event = `success`) => {
   toastr.options = {
     'newestOnTop': false,
-    'positionClass': 'toast-bottom-center',
+    'positionClass': 'toast-top-right',
     'preventDuplicates': true,
     'showDuration': '300',
     'hideDuration': '500',
@@ -133,60 +132,11 @@ const resetBtnClickEventListener = (evt) => {
 form.addEventListener(`submit`, formSubmitEventListener);
 resetBtn.addEventListener(`click`, resetBtnClickEventListener);
 
-// ---------------- Генерация таблицы ----------------------------
-
-// Генерирует пустой ряд таблицы
-const createRowEl = (rowNum) => {
-  const row = document.createElement(`tr`);
-  row.classList.add(`table__row`);
-  if (rowNum !== 0) {
-    row.setAttribute(`data-row`, rowNum);
-  }
-  return row;
-};
-
-// Генерирует ячейку TH
-const createTH = (colNum) => {
-  const th = document.createElement(`th`);
-  th.classList.add(`table__th`);
-  if (colNum !== 0) {
-    th.setAttribute(`data-value`, colNum);
-  }
-  th.innerHTML = colNum;
-  return th;
-};
-
-// Генерация ячеек TH
-const generateTHs = (cols) => {
-  const fragment = new DocumentFragment();
-  for (let i = 0; i <= cols; i++) {
-    const th = createTH(i);
-    fragment.append(th);
-  }
-  return fragment;
-};
-
-// Генерация таблицы
-const generateTable = (cols = 10, rows = 10) => {
-  table.innerHTML = ``;
-  for (let i = 0; i <= rows; i++) {
-    const row = createRowEl(i);
-    let tdFragment = null;
-    if (i === 0) {
-      tdFragment = generateTHs(cols); // фрагмент
-    } else {
-      // генерируем ячейки с инпутами
-    }
-    row.append(tdFragment);
-    table.append(row);
-  }
-};
-
 // Инициализация таблицы
 const initTable = () => {
   generateTable();
-  // const firstInput = form.querySelector('.table__field');
-  // firstInput.focus();
+  const firstInput = form.querySelector('.table__field');
+  firstInput.focus();
 };
 
 initTable();
